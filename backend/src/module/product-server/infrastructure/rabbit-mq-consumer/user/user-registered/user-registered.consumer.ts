@@ -1,8 +1,9 @@
-import { Injectable, Logger, OnModuleInit } from '@nestjs/common';
+import { Injectable, Logger, OnModuleInit, Inject } from '@nestjs/common';
 import { UserRepository } from '../../../repository/user.repo';
 import { RabbitMQService } from 'src/common/infrastruture/rabbit-mq/rabbit-mq.service';
 import { ExchangeNameEnum, ExchangeTypeEnum, QueueEnum, RoutingKeyEnum } from 'src/common/infrastruture/rabbit-mq/type-enum/rabbit-mq.enum';
 import { InboxRepository } from '../../../repository/inbox.repo';
+import { PRODUCT_USER_REPOSITORY, PRODUCT_INBOX_REPOSITORY } from 'src/common/infrastruture/rabbit-mq/rabbit-mq.module';
 
 @Injectable()
 export class UserRegisteredConsumer implements OnModuleInit {
@@ -10,8 +11,8 @@ export class UserRegisteredConsumer implements OnModuleInit {
 
     constructor(
         private readonly rabbitMQService: RabbitMQService,
-        private readonly userRepo: UserRepository,
-        private readonly inboxRepo: InboxRepository,
+        @Inject(PRODUCT_USER_REPOSITORY) private readonly userRepo: UserRepository,
+        @Inject(PRODUCT_INBOX_REPOSITORY) private readonly inboxRepo: InboxRepository,
     ) { }
 
     async onModuleInit() {
