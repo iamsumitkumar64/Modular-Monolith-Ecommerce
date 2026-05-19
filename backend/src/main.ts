@@ -5,9 +5,9 @@ import { AllExceptionsFilter } from './common/infrastruture/filters/all-exceptio
 import { createSchemas } from './bootstrap/db_schema.create';
 
 async function bootstrap() {
-  const app = await NestFactory.create(AppModule);
-
   await createSchemas();
+
+  const app = await NestFactory.create(AppModule);
 
   app.enableCors({
     origin: [process.env.FRONTEND_URL ?? 'http://localhost:3000'],
