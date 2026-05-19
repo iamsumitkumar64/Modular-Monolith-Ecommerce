@@ -7,3 +7,8 @@ For Creation
 3. -> npm run build && npm run migration:user:run && npm run seed:user:user 
 4. -> npm run build && npm run migration:product:run && npm run seed:product:user && npm run seed:product:product
 5. -> npm run build && npm run migration:cart:run && npm run seed:cart:user && npm run seed:cart:product
+6. -> npm run build && npm run migration:order:run && npm run seed:order:user
+7. -> npm run build && npm run migration:finance:run && npm run seed:finance:user
+
+One Click Copy Paste above commands
+npm run build && npm run migration:user:run && npm run seed:user:user && npm run migration:product:run && npm run seed:product:user && npm run seed:product:product && npm run migration:cart:run && npm run seed:cart:user && npm run seed:cart:product && npm run migration:order:run && npm run seed:order:user && npm run build && npm run migration:finance:run && npm run seed:finance:user

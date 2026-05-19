@@ -7,6 +7,7 @@ import { SnackbarProvider } from 'notistack';
 import { PersistGate } from "redux-persist/lib/integration/react";
 import { StyledEngineProvider } from "@mui/material";
 import HeaderComp from "@/component/header-comp/header-comp";
+import Image from 'next/image';
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
 
@@ -19,6 +20,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
               <SnackbarProvider maxSnack={3} autoHideDuration={3000}>
                 <HeaderComp />
                 {children}
+                <Image src={'/bird_animation.gif'} alt="bird animation" width={300} height={200} className="birdAnimation" />
               </SnackbarProvider>
             </PersistGate>
           </Provider>

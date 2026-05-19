@@ -17,15 +17,12 @@ export class ProductRepository extends Repository<ProductEntity> {
         return await this.save(entry);
     }
 
-    async getProductListing(offset?: number, limit?: number) {
-        const [data, total] = await this.findAndCount({
-            order: {
-                created_at: 'DESC'
-            },
-            skip: offset || Number(process.env.page_offset) || 0,
-            take: limit || Number(process.env.page_limit) || 10
+    async findByUuid(uuid: string) {
+        const product = await this.findOne({
+            where: {
+                uuid: uuid
+            }
         });
-
-        return { data, total };
+        return product;
     }
 }

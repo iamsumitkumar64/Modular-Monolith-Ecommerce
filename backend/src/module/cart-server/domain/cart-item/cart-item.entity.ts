@@ -1,5 +1,6 @@
 import { Column, CreateDateColumn, DeleteDateColumn, Entity, ManyToOne, PrimaryGeneratedColumn, UpdateDateColumn, ForeignKey, JoinColumn } from "typeorm";
 import { CartEntity } from "../cart/cart.entity";
+import { ProductEntity } from "../product/product.entity";
 
 @Entity('cart_item')
 export class CartItemEntity {
@@ -20,38 +21,16 @@ export class CartItemEntity {
     @Column({ type: "uuid", nullable: false })
     product_uuid: string;
 
-    @Column({
-        type: "varchar",
-        nullable: false,
-    })
-    product_name: string;
-
-    @Column({
-        type: "decimal",
-        precision: 10,
-        scale: 2,
-        nullable: false,
-    })
-    product_price: number;
-
-    @Column({
-        type: "integer",
-        nullable: false,
-        default: 1,
-    })
+    @Column({ type: "integer", nullable: false, default: 1, })
     quantity: number;
 
-    @Column({
-        type: "decimal",
-        precision: 12,
-        scale: 2,
-        nullable: false,
-    })
-    subtotal: number;
-
     @ManyToOne(() => CartEntity, (cart) => cart.items, { onDelete: "CASCADE" })
-    @JoinColumn({ name: "cart_uuid", referencedColumnName: "uuid" })
+    @JoinColumn({ name: "cart_uuid" })
     cart: CartEntity;
+
+    @ManyToOne(() => ProductEntity, (product) => product.cart_items)
+    @JoinColumn({ name: "product_uuid" })
+    product: ProductEntity;
 
     @CreateDateColumn()
     created_at: Date;

@@ -15,11 +15,15 @@ import * as CartServerUserRepo from 'src/module/cart-server/infrastructure/repos
 import * as CartServerInboxRepo from 'src/module/cart-server/infrastructure/repository/inbox.repo';
 import * as CartUserConsumer from 'src/module/cart-server/infrastructure/rabbit-mq-consumer/user/user-registered/user-registered.consumer';
 
-// Provider tokens for removing ambiqgous dependencies in RabbitMQModule
-export const PRODUCT_USER_REPOSITORY = 'PRODUCT_USER_REPOSITORY';
-export const PRODUCT_INBOX_REPOSITORY = 'PRODUCT_INBOX_REPOSITORY';
-export const CART_USER_REPOSITORY = 'CART_USER_REPOSITORY';
-export const CART_INBOX_REPOSITORY = 'CART_INBOX_REPOSITORY';
+// Order Service
+import * as OrderServerUserRepo from 'src/module/order-server/infrastructure/repository/user.repo';
+import * as OrderServerInboxRepo from 'src/module/order-server/infrastructure/repository/inbox.repo';
+import * as OrderUserConsumer from 'src/module/order-server/infrastructure/rabbit-mq-consumer/user/user-registered/user-registered.consumer';
+
+// finance Service
+import * as FinanceServerUserRepo from 'src/module/finance-server/infrastructure/repository/user.repo';
+import * as FinanceServerInboxRepo from 'src/module/finance-server/infrastructure/repository/inbox.repo';
+import * as FinanceUserConsumer from 'src/module/finance-server/infrastructure/rabbit-mq-consumer/user/user-registered/user-registered.consumer';
 
 @Global()
 @Module({
@@ -32,26 +36,24 @@ export const CART_INBOX_REPOSITORY = 'CART_INBOX_REPOSITORY';
         UserServerUserRepo.UserRepository,
 
         // Product Service
-        {
-            provide: PRODUCT_USER_REPOSITORY,
-            useClass: ProductServerUserRepo.UserRepository,
-        },
-        {
-            provide: PRODUCT_INBOX_REPOSITORY,
-            useClass: ProductServerInboxRepo.InboxRepository,
-        },
+        ProductServerUserRepo.UserRepository,
+        ProductServerInboxRepo.InboxRepository,
         ProductUserConsumer.UserRegisteredConsumer,
 
         // Cart Service
-        {
-            provide: CART_USER_REPOSITORY,
-            useClass: CartServerUserRepo.UserRepository,
-        },
-        {
-            provide: CART_INBOX_REPOSITORY,
-            useClass: CartServerInboxRepo.InboxRepository,
-        },
+        CartServerUserRepo.UserRepository,
+        CartServerInboxRepo.InboxRepository,
         CartUserConsumer.UserRegisteredConsumer,
+
+        // order Service
+        OrderServerUserRepo.UserRepository,
+        OrderServerInboxRepo.InboxRepository,
+        OrderUserConsumer.UserRegisteredConsumer,
+
+        // finance Service
+        FinanceServerUserRepo.UserRepository,
+        FinanceServerInboxRepo.InboxRepository,
+        FinanceUserConsumer.UserRegisteredConsumer,
     ],
     exports: [RabbitMQService],
 })

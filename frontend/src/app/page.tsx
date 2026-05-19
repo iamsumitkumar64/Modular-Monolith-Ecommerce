@@ -2,22 +2,29 @@
 
 import { useEffect, useState } from "react";
 import InfiniteScroll from "react-infinite-scroll-component";
-import { Box, Card, CardContent, CardMedia, CircularProgress, Container, Typography, } from "@mui/material";
+import { Box, Button, Card, CardContent, CardMedia, CircularProgress, Container, Typography, } from "@mui/material";
 import styles from "./home.module.css";
 import { RootState } from "@/redux/store";
 import { getProducts } from "@/redux/feature/product/product-action";
 import { enqueueSnackbar } from "notistack";
 import { useAppDispatch, useAppSelector } from "@/redux/hooks.ts";
+import { addItemToCart } from "@/redux/feature/cart/cart-action";
+import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
+import { Product } from "@/redux/feature/product/product-type";
+import Image from "next/image";
 
 export default function Home() {
   const dispatch = useAppDispatch();
   const { products, totalDocuments, loading, } = useAppSelector((state: RootState) => state.productReducer);
+  const { cart } = useAppSelector((state: RootState) => state.cartReducer);
   const [offset, setOffset] = useState(Number(process.env.page_offset) || 0);
   const limit = Number(process.env.page_limit) || 10;
   const [hasMore, setHasMore] = useState(true);
 
   useEffect(() => {
-    fetchInitialProducts();
+    if (!products.length) {
+      fetchInitialProducts();
+    }
   }, []);
 
   const fetchInitialProducts = async () => {
@@ -55,6 +62,16 @@ export default function Home() {
     }
   };
 
+  const handleAddToCart = async (product_uuid: string) => {
+    try {
+      await dispatch(addItemToCart({ product_uuid, quantity: 1, })).unwrap();
+      enqueueSnackbar("Item added to cart", { variant: "success", });
+    } catch (err: any) {
+      console.log(err);
+      enqueueSnackbar(err, { variant: "warning", });
+    }
+  };
+
   return (
     <Container maxWidth="xl" className={styles.container}>
       <Box className={styles.header}>
@@ -77,15 +94,13 @@ export default function Home() {
           scrollableTarget="scrollableDiv"
         >
           <Box className={styles.productWrapper}>
-            {products.map((product: any) => (
+            {products.map((product: Product) => (
               <Card
                 key={product.uuid}
                 className={styles.card}
                 elevation={2}
               >
-                <Box
-                  className={styles.imageWrapper}
-                >
+                <Box className={styles.imageWrapper}>
                   <CardMedia
                     component="img"
                     image={product.image_url}
@@ -94,32 +109,21 @@ export default function Home() {
                   />
                 </Box>
 
-                <CardContent
-                  className={
-                    styles.cardContent
-                  }
+                <CardContent className={styles.cardContent}
                 >
-                  <Typography
-                    className={
-                      styles.productName
-                    }
-                  >
-                    {product.name}
-                  </Typography>
+                  <Typography className={styles.productName}>{product.name}</Typography>
+                  <Typography className={styles.description}>{product.description}</Typography>
+                  <Typography className={styles.price}>₹ {product.price}</Typography>
 
-                  <Typography
-                    className={
-                      styles.description
-                    }
+                  <Button
+                    className={styles.addtocart}
+                    startIcon={<ShoppingCartIcon />}
+                    onClick={() => handleAddToCart(product.uuid)}
                   >
-                    {product.description}
-                  </Typography>
-
-                  <Typography
-                    className={styles.price}
-                  >
-                    ₹ {product.price}
-                  </Typography>
+                    {cart?.items.find(item => item.product_uuid === product.uuid)
+                      ? "Increase Quantity"
+                      : "Add To Cart"}
+                  </Button>
                 </CardContent>
               </Card>
             ))}

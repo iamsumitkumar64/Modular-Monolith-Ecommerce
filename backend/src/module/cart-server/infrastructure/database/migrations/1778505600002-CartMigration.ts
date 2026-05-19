@@ -1,4 +1,4 @@
-import { MigrationInterface, QueryRunner, Table, TableForeignKey } from "typeorm";
+import { MigrationInterface, QueryRunner, Table, TableForeignKey, } from "typeorm";
 
 export class CartMigration1778505600002 implements MigrationInterface {
     name = "CartMigration1778505600002";
@@ -12,11 +12,6 @@ export class CartMigration1778505600002 implements MigrationInterface {
                     { name: "id", type: "bigint", isGenerated: true, generationStrategy: "increment", isUnique: true, isNullable: false, },
                     { name: "user_uuid", type: "uuid", isNullable: false, },
                     { name: "total_price", type: "decimal", precision: 12, scale: 2, default: 0, isNullable: false, },
-                    { name: "shipment_address", type: "varchar", isNullable: true, },
-                    { name: "city", type: "varchar", isNullable: true, },
-                    { name: "postal_code", type: "varchar", isNullable: true, },
-                    { name: "country", type: "varchar", isNullable: true, },
-                    { name: "status", type: "varchar", default: "'PENDING'", isNullable: true, },
                     { name: "created_at", type: "timestamp", default: "now()", },
                     { name: "updated_at", type: "timestamp", default: "now()", },
                     { name: "deleted_at", type: "timestamp", isNullable: true, },
@@ -24,9 +19,20 @@ export class CartMigration1778505600002 implements MigrationInterface {
             }),
             true
         );
+
+        await queryRunner.createForeignKey(
+            "cart",
+            new TableForeignKey({
+                columnNames: ["user_uuid"],
+                referencedTableName: "user",
+                referencedColumnNames: ["uuid"],
+                onDelete: "CASCADE",
+            })
+        );
     }
 
     public async down(queryRunner: QueryRunner): Promise<void> {
+        await queryRunner.query(`DROP INDEX IF EXISTS idx_cart_user_uuid`);
         await queryRunner.dropTable("cart", true);
     }
 }

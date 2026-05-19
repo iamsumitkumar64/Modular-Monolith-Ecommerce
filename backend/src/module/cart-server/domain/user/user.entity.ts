@@ -1,4 +1,5 @@
-import { Column, CreateDateColumn, DeleteDateColumn, Entity, Generated, OneToMany, PrimaryColumn, PrimaryGeneratedColumn, UpdateDateColumn } from "typeorm";
+import { Column, CreateDateColumn, DeleteDateColumn, Entity, Generated, OneToMany, OneToOne, PrimaryColumn, PrimaryGeneratedColumn, UpdateDateColumn } from "typeorm";
+import { CartEntity } from "../cart/cart.entity";
 
 @Entity('user')
 export class UserEntity {
@@ -21,6 +22,9 @@ export class UserEntity {
 
     @Column({ type: "varchar", nullable: false })
     password: string;
+
+    @OneToOne(() => CartEntity, cart => cart.user)
+    cart: CartEntity;
 
     @CreateDateColumn()
     created_at: Date;

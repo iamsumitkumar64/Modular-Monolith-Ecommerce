@@ -29,3 +29,10 @@ p {
   text-overflow: ellipsis;
   word-break: break-all;
 }
+
+.birdAnimation {
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  width: 9%;
+}

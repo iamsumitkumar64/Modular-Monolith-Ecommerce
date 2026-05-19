@@ -1,4 +1,5 @@
-import { Column, CreateDateColumn, DeleteDateColumn, Entity, PrimaryGeneratedColumn, UpdateDateColumn, } from "typeorm";
+import { Column, CreateDateColumn, DeleteDateColumn, Entity, OneToMany, PrimaryGeneratedColumn, UpdateDateColumn, } from "typeorm";
+import { CartItemEntity } from "../cart-item/cart-item.entity";
 
 @Entity("product")
 export class ProductEntity {
@@ -39,6 +40,9 @@ export class ProductEntity {
         default: 0,
     })
     price: number;
+
+    @OneToMany(() => CartItemEntity, (cartItem) => cartItem.product)
+    cart_items: CartItemEntity[];
 
     @CreateDateColumn()
     created_at: Date;

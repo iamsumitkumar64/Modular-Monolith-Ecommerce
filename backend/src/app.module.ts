@@ -16,6 +16,9 @@ import { ScheduleModule } from '@nestjs/schedule';
 import { productDataSource } from './module/product-server/infrastructure/database/data-source';
 import { ProductModule } from './module/product-server/feature/product/product.module';
 import { cartDataSource } from './module/cart-server/infrastructure/database/data-source';
+import { CartModule } from './module/cart-server/feature/cart/cart.module';
+import { orderDataSource } from './module/order-server/infrastructure/database/data-source';
+import { financeDataSource } from './module/finance-server/infrastructure/database/data-source';
 
 @Module({
   imports: [
@@ -55,6 +58,23 @@ import { cartDataSource } from './module/cart-server/infrastructure/database/dat
     TypeOrmModule.forRoot({
       name: process.env.DB_POSTGRES_CART_SCHEMA || 'cart_schema',
       ...cartDataSource.options,
+      retryAttempts: 10,
+      retryDelay: 5000
+    }),
+    CartModule,
+
+    // Order Modules
+    TypeOrmModule.forRoot({
+      name: process.env.DB_POSTGRES_ORDER_SCHEMA || 'order_schema',
+      ...orderDataSource.options,
+      retryAttempts: 10,
+      retryDelay: 5000
+    }),
+
+    // finance Modules
+    TypeOrmModule.forRoot({
+      name: process.env.DB_POSTGRES_FINANCE_SCHEMA || 'finance_schema',
+      ...financeDataSource.options,
       retryAttempts: 10,
       retryDelay: 5000
     }),

@@ -1,5 +1,6 @@
-import { Column, CreateDateColumn, DeleteDateColumn, Entity, OneToMany, PrimaryGeneratedColumn, UpdateDateColumn } from "typeorm";
+import { Column, CreateDateColumn, DeleteDateColumn, Entity, JoinColumn, ManyToOne, OneToMany, OneToOne, PrimaryGeneratedColumn, UpdateDateColumn } from "typeorm";
 import { CartItemEntity } from "../cart-item/cart-item.entity";
+import { UserEntity } from "../user/user.entity";
 
 @Entity('cart')
 export class CartEntity {
@@ -17,32 +18,15 @@ export class CartEntity {
     @Column({ type: "uuid", nullable: false })
     user_uuid: string;
 
-    @Column({
-        type: "decimal",
-        precision: 12,
-        scale: 2,
-        nullable: false,
-        default: 0,
-    })
+    @Column({ type: "decimal", precision: 12, scale: 2, nullable: false, default: 0, })
     total_price: number;
-
-    @Column({ type: "varchar", nullable: true })
-    shipment_address: string;
-
-    @Column({ type: "varchar", nullable: true })
-    city: string;
-
-    @Column({ type: "varchar", nullable: true })
-    postal_code: string;
-
-    @Column({ type: "varchar", nullable: true })
-    country: string;
-
-    @Column({ type: "varchar", nullable: true, default: "PENDING" })
-    status: string;
 
     @OneToMany(() => CartItemEntity, (cartItem) => cartItem.cart, { cascade: true })
     items: CartItemEntity[];
+
+    @OneToOne(() => UserEntity, (user) => user.cart)
+    @JoinColumn({ name: "user_uuid" })
+    user: UserEntity;
 
     @CreateDateColumn()
     created_at: Date;

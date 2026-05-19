@@ -6,6 +6,7 @@ import { ProductEntity } from '../../../domain/product/product.entity';
 const products: Partial<ProductEntity>[] = [
     {
         id: 1,
+        uuid: '550e8400-e29b-41d4-a716-446655440001',
         name: 'iPhone 15 Pro',
         description: 'Apple smartphone with A17 Pro chip and titanium body.',
         image_url: 'https://picsum.photos/seed/iphone15pro/640/480',
@@ -13,6 +14,7 @@ const products: Partial<ProductEntity>[] = [
     },
     {
         id: 2,
+        uuid: '550e8400-e29b-41d4-a716-446655440002',
         name: 'Samsung Galaxy S24 Ultra',
         description: 'Premium Android smartphone with 200MP camera.',
         image_url: 'https://picsum.photos/seed/s24ultra/640/480',
@@ -20,6 +22,7 @@ const products: Partial<ProductEntity>[] = [
     },
     {
         id: 3,
+        uuid: '550e8400-e29b-41d4-a716-446655440003',
         name: 'MacBook Air M3',
         description: 'Lightweight Apple laptop powered by M3 chip.',
         image_url: 'https://picsum.photos/seed/macbookairm3/640/480',
@@ -27,6 +30,7 @@ const products: Partial<ProductEntity>[] = [
     },
     {
         id: 4,
+        uuid: '550e8400-e29b-41d4-a716-446655440004',
         name: 'Dell XPS 15',
         description: 'High-performance ultrabook with InfinityEdge display.',
         image_url: 'https://picsum.photos/seed/dellxps15/640/480',
@@ -34,6 +38,7 @@ const products: Partial<ProductEntity>[] = [
     },
     {
         id: 5,
+        uuid: '550e8400-e29b-41d4-a716-446655440005',
         name: 'Sony WH-1000XM5',
         description: 'Industry-leading noise cancelling headphones.',
         image_url: 'https://picsum.photos/seed/sonyxm5/640/480',
@@ -41,6 +46,7 @@ const products: Partial<ProductEntity>[] = [
     },
     {
         id: 6,
+        uuid: '550e8400-e29b-41d4-a716-446655440006',
         name: 'Apple AirPods Pro 2',
         description: 'Wireless earbuds with active noise cancellation.',
         image_url: 'https://picsum.photos/seed/airpodspro2/640/480',
@@ -48,6 +54,7 @@ const products: Partial<ProductEntity>[] = [
     },
     {
         id: 7,
+        uuid: '550e8400-e29b-41d4-a716-446655440007',
         name: 'iPad Pro 12.9',
         description: 'Apple tablet with Liquid Retina XDR display.',
         image_url: 'https://picsum.photos/seed/ipadpro/640/480',
@@ -55,6 +62,7 @@ const products: Partial<ProductEntity>[] = [
     },
     {
         id: 8,
+        uuid: '550e8400-e29b-41d4-a716-446655440008',
         name: 'Samsung Galaxy Tab S9',
         description: 'Android flagship tablet with AMOLED display.',
         image_url: 'https://picsum.photos/seed/tabs9/640/480',
@@ -62,6 +70,7 @@ const products: Partial<ProductEntity>[] = [
     },
     {
         id: 9,
+        uuid: '550e8400-e29b-41d4-a716-446655440009',
         name: 'Logitech MX Master 3S',
         description: 'Advanced wireless productivity mouse.',
         image_url: 'https://picsum.photos/seed/mxmaster3s/640/480',
@@ -69,6 +78,7 @@ const products: Partial<ProductEntity>[] = [
     },
     {
         id: 10,
+        uuid: '550e8400-e29b-41d4-a716-446655440010',
         name: 'Keychron K8 Keyboard',
         description: 'Wireless mechanical keyboard for developers.',
         image_url: 'https://picsum.photos/seed/keychronk8/640/480',
@@ -76,6 +86,7 @@ const products: Partial<ProductEntity>[] = [
     },
     {
         id: 11,
+        uuid: '550e8400-e29b-41d4-a716-446655440011',
         name: 'Amazon Echo Dot 5',
         description: 'Smart speaker with Alexa voice assistant.',
         image_url: 'https://picsum.photos/seed/echodot5/640/480',
@@ -83,6 +94,7 @@ const products: Partial<ProductEntity>[] = [
     },
     {
         id: 12,
+        uuid: '550e8400-e29b-41d4-a716-446655440012',
         name: 'Google Nest Hub',
         description: 'Smart display for home automation.',
         image_url: 'https://picsum.photos/seed/nesthub/640/480',
@@ -90,6 +102,7 @@ const products: Partial<ProductEntity>[] = [
     },
     {
         id: 13,
+        uuid: '550e8400-e29b-41d4-a716-446655440013',
         name: 'Canon EOS R50',
         description: 'Mirrorless camera for creators and vloggers.',
         image_url: 'https://picsum.photos/seed/canoneosr50/640/480',
@@ -97,6 +110,7 @@ const products: Partial<ProductEntity>[] = [
     },
     {
         id: 14,
+        uuid: '550e8400-e29b-41d4-a716-446655440014',
         name: 'GoPro HERO12',
         description: 'Action camera with 5.3K video recording.',
         image_url: 'https://picsum.photos/seed/gopro12/640/480',
@@ -104,6 +118,7 @@ const products: Partial<ProductEntity>[] = [
     },
     {
         id: 15,
+        uuid: '550e8400-e29b-41d4-a716-446655440015',
         name: 'PlayStation 5',
         description: 'Next-gen gaming console from Sony.',
         image_url: 'https://picsum.photos/seed/ps5/640/480',
@@ -111,6 +126,7 @@ const products: Partial<ProductEntity>[] = [
     },
     {
         id: 16,
+        uuid: '550e8400-e29b-41d4-a716-446655440016',
         name: 'Xbox Series X',
         description: 'Powerful gaming console from Microsoft.',
         image_url: 'https://picsum.photos/seed/xboxseriesx/640/480',
@@ -118,6 +134,7 @@ const products: Partial<ProductEntity>[] = [
     },
     {
         id: 17,
+        uuid: '550e8400-e29b-41d4-a716-446655440017',
         name: 'Nintendo Switch OLED',
         description: 'Portable gaming console with OLED screen.',
         image_url: 'https://picsum.photos/seed/switcholed/640/480',
@@ -125,6 +142,7 @@ const products: Partial<ProductEntity>[] = [
     },
     {
         id: 18,
+        uuid: '550e8400-e29b-41d4-a716-446655440018',
         name: 'JBL Flip 6',
         description: 'Portable waterproof Bluetooth speaker.',
         image_url: 'https://picsum.photos/seed/jblflip6/640/480',
@@ -132,6 +150,7 @@ const products: Partial<ProductEntity>[] = [
     },
     {
         id: 19,
+        uuid: '550e8400-e29b-41d4-a716-446655440019',
         name: 'Dyson V15 Detect',
         description: 'Cordless vacuum cleaner with laser detection.',
         image_url: 'https://picsum.photos/seed/dysonv15/640/480',
@@ -139,6 +158,7 @@ const products: Partial<ProductEntity>[] = [
     },
     {
         id: 20,
+        uuid: '550e8400-e29b-41d4-a716-446655440020',
         name: 'Mi Smart Band 8',
         description: 'Affordable fitness tracking smart band.',
         image_url: 'https://picsum.photos/seed/miband8/640/480',
@@ -146,6 +166,7 @@ const products: Partial<ProductEntity>[] = [
     },
     {
         id: 21,
+        uuid: '550e8400-e29b-41d4-a716-446655440021',
         name: 'Apple Watch Series 9',
         description: 'Advanced smartwatch with health tracking.',
         image_url: 'https://picsum.photos/seed/applewatch9/640/480',
@@ -153,6 +174,7 @@ const products: Partial<ProductEntity>[] = [
     },
     {
         id: 22,
+        uuid: '550e8400-e29b-41d4-a716-446655440022',
         name: 'Samsung Galaxy Watch 6',
         description: 'Wear OS smartwatch with fitness features.',
         image_url: 'https://picsum.photos/seed/galaxywatch6/640/480',
@@ -160,6 +182,7 @@ const products: Partial<ProductEntity>[] = [
     },
     {
         id: 23,
+        uuid: '550e8400-e29b-41d4-a716-446655440023',
         name: 'Asus ROG Strix G16',
         description: 'Gaming laptop with RTX graphics.',
         image_url: 'https://picsum.photos/seed/rogstrixg16/640/480',
@@ -167,6 +190,7 @@ const products: Partial<ProductEntity>[] = [
     },
     {
         id: 24,
+        uuid: '550e8400-e29b-41d4-a716-446655440024',
         name: 'HP Pavilion 15',
         description: 'Reliable everyday performance laptop.',
         image_url: 'https://picsum.photos/seed/hppavilion15/640/480',
@@ -174,6 +198,7 @@ const products: Partial<ProductEntity>[] = [
     },
     {
         id: 25,
+        uuid: '550e8400-e29b-41d4-a716-446655440025',
         name: 'Lenovo ThinkPad X1 Carbon',
         description: 'Business ultrabook with premium build quality.',
         image_url: 'https://picsum.photos/seed/thinkpadx1/640/480',
@@ -181,6 +206,7 @@ const products: Partial<ProductEntity>[] = [
     },
     {
         id: 26,
+        uuid: '550e8400-e29b-41d4-a716-446655440026',
         name: 'OnePlus 12',
         description: 'Flagship Android smartphone with fast charging.',
         image_url: 'https://picsum.photos/seed/oneplus12/640/480',
@@ -188,6 +214,7 @@ const products: Partial<ProductEntity>[] = [
     },
     {
         id: 27,
+        uuid: '550e8400-e29b-41d4-a716-446655440027',
         name: 'Nothing Phone 2',
         description: 'Stylish smartphone with Glyph interface.',
         image_url: 'https://picsum.photos/seed/nothingphone2/640/480',
@@ -195,6 +222,7 @@ const products: Partial<ProductEntity>[] = [
     },
     {
         id: 28,
+        uuid: '550e8400-e29b-41d4-a716-446655440028',
         name: 'Realme GT 6',
         description: 'Performance-focused smartphone with AMOLED display.',
         image_url: 'https://picsum.photos/seed/realmegt6/640/480',
@@ -202,6 +230,7 @@ const products: Partial<ProductEntity>[] = [
     },
     {
         id: 29,
+        uuid: '550e8400-e29b-41d4-a716-446655440029',
         name: 'Boat Airdopes 141',
         description: 'Budget wireless earbuds with long battery life.',
         image_url: 'https://picsum.photos/seed/airdopes141/640/480',
@@ -209,6 +238,7 @@ const products: Partial<ProductEntity>[] = [
     },
     {
         id: 30,
+        uuid: '550e8400-e29b-41d4-a716-446655440030',
         name: 'Anker Power Bank 20000mAh',
         description: 'Fast charging portable power bank.',
         image_url: 'https://picsum.photos/seed/ankerpb/640/480',
@@ -216,6 +246,7 @@ const products: Partial<ProductEntity>[] = [
     },
     {
         id: 31,
+        uuid: '550e8400-e29b-41d4-a716-446655440031',
         name: 'TP-Link Archer C6',
         description: 'Dual-band WiFi router for home use.',
         image_url: 'https://picsum.photos/seed/archerc6/640/480',
@@ -223,6 +254,7 @@ const products: Partial<ProductEntity>[] = [
     },
     {
         id: 32,
+        uuid: '550e8400-e29b-41d4-a716-446655440032',
         name: 'LG OLED C3 TV',
         description: 'Premium OLED smart television with Dolby Vision.',
         image_url: 'https://picsum.photos/seed/lgoledc3/640/480',
@@ -230,6 +262,7 @@ const products: Partial<ProductEntity>[] = [
     },
     {
         id: 33,
+        uuid: '550e8400-e29b-41d4-a716-446655440033',
         name: 'Samsung 55 Crystal 4K TV',
         description: '4K UHD smart TV with vibrant colors.',
         image_url: 'https://picsum.photos/seed/samsung4ktv/640/480',
@@ -237,6 +270,7 @@ const products: Partial<ProductEntity>[] = [
     },
     {
         id: 34,
+        uuid: '550e8400-e29b-41d4-a716-446655440034',
         name: 'Kindle Paperwhite',
         description: 'E-reader with glare-free display.',
         image_url: 'https://picsum.photos/seed/kindlepaperwhite/640/480',
@@ -244,6 +278,7 @@ const products: Partial<ProductEntity>[] = [
     },
     {
         id: 35,
+        uuid: '550e8400-e29b-41d4-a716-446655440035',
         name: 'Nike Air Max 270',
         description: 'Comfortable lifestyle sneakers from Nike.',
         image_url: 'https://picsum.photos/seed/airmax270/640/480',
@@ -251,6 +286,7 @@ const products: Partial<ProductEntity>[] = [
     },
     {
         id: 36,
+        uuid: '550e8400-e29b-41d4-a716-446655440036',
         name: 'Adidas Ultraboost 22',
         description: 'Running shoes with responsive cushioning.',
         image_url: 'https://picsum.photos/seed/ultraboost22/640/480',
@@ -258,6 +294,7 @@ const products: Partial<ProductEntity>[] = [
     },
     {
         id: 37,
+        uuid: '550e8400-e29b-41d4-a716-446655440037',
         name: 'Puma Sports Backpack',
         description: 'Durable backpack for daily and gym use.',
         image_url: 'https://picsum.photos/seed/pumabag/640/480',
@@ -265,6 +302,7 @@ const products: Partial<ProductEntity>[] = [
     },
     {
         id: 38,
+        uuid: '550e8400-e29b-41d4-a716-446655440038',
         name: 'Wildcraft Hiking Bag',
         description: 'Large hiking backpack with rain cover.',
         image_url: 'https://picsum.photos/seed/wildcraftbag/640/480',
@@ -272,6 +310,7 @@ const products: Partial<ProductEntity>[] = [
     },
     {
         id: 39,
+        uuid: '550e8400-e29b-41d4-a716-446655440039',
         name: 'Casio G-Shock GA2100',
         description: 'Shock-resistant analog digital watch.',
         image_url: 'https://picsum.photos/seed/gshockga2100/640/480',
@@ -279,12 +318,14 @@ const products: Partial<ProductEntity>[] = [
     },
     {
         id: 40,
+        uuid: '550e8400-e29b-41d4-a716-446655440040',
         name: 'Fossil Gen 6 Smartwatch',
         description: 'Stylish smartwatch powered by Wear OS.',
         image_url: 'https://picsum.photos/seed/fossilgen6/640/480',
         price: 22999,
     }, {
         id: 41,
+        uuid: '550e8400-e29b-41d4-a716-446655440041',
         name: 'Acer Nitro 5',
         description: 'Gaming laptop with high refresh rate display.',
         image_url: 'https://picsum.photos/seed/acernitro5/640/480',
@@ -292,6 +333,7 @@ const products: Partial<ProductEntity>[] = [
     },
     {
         id: 42,
+        uuid: '550e8400-e29b-41d4-a716-446655440042',
         name: 'MSI Katana GF66',
         description: 'Performance gaming laptop with RTX graphics.',
         image_url: 'https://picsum.photos/seed/msigf66/640/480',
@@ -299,6 +341,7 @@ const products: Partial<ProductEntity>[] = [
     },
     {
         id: 43,
+        uuid: '550e8400-e29b-41d4-a716-446655440043',
         name: 'Razer DeathAdder V3',
         description: 'Ergonomic gaming mouse with optical switches.',
         image_url: 'https://picsum.photos/seed/deathadderv3/640/480',
@@ -306,6 +349,7 @@ const products: Partial<ProductEntity>[] = [
     },
     {
         id: 44,
+        uuid: '550e8400-e29b-41d4-a716-446655440044',
         name: 'SteelSeries Arctis 7',
         description: 'Wireless gaming headset with surround sound.',
         image_url: 'https://picsum.photos/seed/arctis7/640/480',
@@ -313,6 +357,7 @@ const products: Partial<ProductEntity>[] = [
     },
     {
         id: 45,
+        uuid: '550e8400-e29b-41d4-a716-446655440045',
         name: 'Corsair K95 RGB',
         description: 'Mechanical gaming keyboard with RGB lighting.',
         image_url: 'https://picsum.photos/seed/corsairk95/640/480',
@@ -320,6 +365,7 @@ const products: Partial<ProductEntity>[] = [
     },
     {
         id: 46,
+        uuid: '550e8400-e29b-41d4-a716-446655440046',
         name: 'BenQ MOBIUZ EX2710',
         description: '27-inch gaming monitor with 144Hz refresh rate.',
         image_url: 'https://picsum.photos/seed/benqmobiuz/640/480',
@@ -327,6 +373,7 @@ const products: Partial<ProductEntity>[] = [
     },
     {
         id: 47,
+        uuid: '550e8400-e29b-41d4-a716-446655440047',
         name: 'LG UltraGear 32GN650',
         description: 'QHD gaming monitor with HDR support.',
         image_url: 'https://picsum.photos/seed/lgultragear/640/480',
@@ -334,6 +381,7 @@ const products: Partial<ProductEntity>[] = [
     },
     {
         id: 48,
+        uuid: '550e8400-e29b-41d4-a716-446655440048',
         name: 'SanDisk Extreme SSD 1TB',
         description: 'Portable high-speed external solid state drive.',
         image_url: 'https://picsum.photos/seed/sandiskssd/640/480',
@@ -341,6 +389,7 @@ const products: Partial<ProductEntity>[] = [
     },
     {
         id: 49,
+        uuid: '550e8400-e29b-41d4-a716-446655440049',
         name: 'WD My Passport 2TB',
         description: 'Portable external hard drive for backups.',
         image_url: 'https://picsum.photos/seed/wdpassport/640/480',
@@ -348,6 +397,7 @@ const products: Partial<ProductEntity>[] = [
     },
     {
         id: 50,
+        uuid: '550e8400-e29b-41d4-a716-446655440050',
         name: 'Seagate BarraCuda 4TB',
         description: 'Internal hard drive for desktop storage.',
         image_url: 'https://picsum.photos/seed/barracuda4tb/640/480',
@@ -355,6 +405,7 @@ const products: Partial<ProductEntity>[] = [
     },
     {
         id: 51,
+        uuid: '550e8400-e29b-41d4-a716-446655440051',
         name: 'Philips Hue Starter Kit',
         description: 'Smart lighting kit with app control.',
         image_url: 'https://picsum.photos/seed/philipshue/640/480',
@@ -362,6 +413,7 @@ const products: Partial<ProductEntity>[] = [
     },
     {
         id: 52,
+        uuid: '550e8400-e29b-41d4-a716-446655440052',
         name: 'Mi Robot Vacuum Mop',
         description: 'Smart robotic vacuum cleaner with mop feature.',
         image_url: 'https://picsum.photos/seed/mirobotvacuum/640/480',
@@ -369,6 +421,7 @@ const products: Partial<ProductEntity>[] = [
     },
     {
         id: 53,
+        uuid: '550e8400-e29b-41d4-a716-446655440053',
         name: 'Instant Pot Duo 7L',
         description: 'Multi-use electric pressure cooker.',
         image_url: 'https://picsum.photos/seed/instantpotduo/640/480',
@@ -376,6 +429,7 @@ const products: Partial<ProductEntity>[] = [
     },
     {
         id: 54,
+        uuid: '550e8400-e29b-41d4-a716-446655440054',
         name: 'NutriBullet Pro',
         description: 'High-speed personal blender for smoothies.',
         image_url: 'https://picsum.photos/seed/nutribullet/640/480',
@@ -383,6 +437,7 @@ const products: Partial<ProductEntity>[] = [
     },
     {
         id: 55,
+        uuid: '550e8400-e29b-41d4-a716-446655440055',
         name: 'Prestige Induction Cooktop',
         description: 'Energy efficient induction stove.',
         image_url: 'https://picsum.photos/seed/prestigeinduction/640/480',
@@ -390,6 +445,7 @@ const products: Partial<ProductEntity>[] = [
     },
     {
         id: 56,
+        uuid: '550e8400-e29b-41d4-a716-446655440056',
         name: 'KitchenAid Stand Mixer',
         description: 'Premium mixer for baking and cooking.',
         image_url: 'https://picsum.photos/seed/kitchenaidmixer/640/480',
@@ -397,6 +453,7 @@ const products: Partial<ProductEntity>[] = [
     },
     {
         id: 57,
+        uuid: '550e8400-e29b-41d4-a716-446655440057',
         name: 'Borosil Coffee Maker',
         description: 'Automatic drip coffee machine.',
         image_url: 'https://picsum.photos/seed/borosilcoffee/640/480',
@@ -404,6 +461,7 @@ const products: Partial<ProductEntity>[] = [
     },
     {
         id: 58,
+        uuid: '550e8400-e29b-41d4-a716-446655440058',
         name: 'Milton Thermosteel Bottle',
         description: 'Vacuum insulated stainless steel water bottle.',
         image_url: 'https://picsum.photos/seed/miltonbottle/640/480',
@@ -411,6 +469,7 @@ const products: Partial<ProductEntity>[] = [
     },
     {
         id: 59,
+        uuid: '550e8400-e29b-41d4-a716-446655440059',
         name: 'Titan Neo Analog Watch',
         description: 'Elegant analog wrist watch for men.',
         image_url: 'https://picsum.photos/seed/titanneo/640/480',
@@ -418,6 +477,7 @@ const products: Partial<ProductEntity>[] = [
     },
     {
         id: 60,
+        uuid: '550e8400-e29b-41d4-a716-446655440060',
         name: 'Ray-Ban Aviator Classic',
         description: 'Iconic aviator sunglasses with UV protection.',
         image_url: 'https://picsum.photos/seed/raybanaviator/640/480',
@@ -425,6 +485,7 @@ const products: Partial<ProductEntity>[] = [
     },
     {
         id: 61,
+        uuid: '550e8400-e29b-41d4-a716-446655440061',
         name: 'American Tourister Trolley Bag',
         description: 'Durable travel suitcase with spinner wheels.',
         image_url: 'https://picsum.photos/seed/trolleybag/640/480',
@@ -432,6 +493,7 @@ const products: Partial<ProductEntity>[] = [
     },
     {
         id: 62,
+        uuid: '550e8400-e29b-41d4-a716-446655440062',
         name: 'Safari Laptop Backpack',
         description: 'Spacious backpack with laptop compartment.',
         image_url: 'https://picsum.photos/seed/safaribag/640/480',
@@ -439,6 +501,7 @@ const products: Partial<ProductEntity>[] = [
     },
     {
         id: 63,
+        uuid: '550e8400-e29b-41d4-a716-446655440063',
         name: 'Nike Dri-FIT T-Shirt',
         description: 'Breathable sports t-shirt for workouts.',
         image_url: 'https://picsum.photos/seed/nikedrifit/640/480',
@@ -446,6 +509,7 @@ const products: Partial<ProductEntity>[] = [
     },
     {
         id: 64,
+        uuid: '550e8400-e29b-41d4-a716-446655440064',
         name: 'Adidas Track Pants',
         description: 'Comfortable athletic wear for training.',
         image_url: 'https://picsum.photos/seed/adidastrackpants/640/480',
@@ -453,6 +517,7 @@ const products: Partial<ProductEntity>[] = [
     },
     {
         id: 65,
+        uuid: '550e8400-e29b-41d4-a716-446655440065',
         name: 'Under Armour Gym Gloves',
         description: 'Training gloves with enhanced grip.',
         image_url: 'https://picsum.photos/seed/uagloves/640/480',
@@ -460,6 +525,7 @@ const products: Partial<ProductEntity>[] = [
     },
     {
         id: 66,
+        uuid: '550e8400-e29b-41d4-a716-446655440066',
         name: 'Decathlon Yoga Mat',
         description: 'Non-slip yoga mat for fitness and exercise.',
         image_url: 'https://picsum.photos/seed/yogamat/640/480',
@@ -467,6 +533,7 @@ const products: Partial<ProductEntity>[] = [
     },
     {
         id: 67,
+        uuid: '550e8400-e29b-41d4-a716-446655440067',
         name: 'Cosco Football',
         description: 'Durable football suitable for outdoor play.',
         image_url: 'https://picsum.photos/seed/coscofootball/640/480',
@@ -474,6 +541,7 @@ const products: Partial<ProductEntity>[] = [
     },
     {
         id: 68,
+        uuid: '550e8400-e29b-41d4-a716-446655440068',
         name: 'Yonex Badminton Racket',
         description: 'Lightweight racket for intermediate players.',
         image_url: 'https://picsum.photos/seed/yonexracket/640/480',
@@ -481,6 +549,7 @@ const products: Partial<ProductEntity>[] = [
     },
     {
         id: 69,
+        uuid: '550e8400-e29b-41d4-a716-446655440069',
         name: 'Kindle Scribe',
         description: 'E-reader with note-taking capabilities.',
         image_url: 'https://picsum.photos/seed/kindlescribe/640/480',
@@ -488,6 +557,7 @@ const products: Partial<ProductEntity>[] = [
     },
     {
         id: 70,
+        uuid: '550e8400-e29b-41d4-a716-446655440070',
         name: 'Samsung T7 Portable SSD',
         description: 'Compact external SSD with USB-C connectivity.',
         image_url: 'https://picsum.photos/seed/samsungt7/640/480',
@@ -495,6 +565,7 @@ const products: Partial<ProductEntity>[] = [
     },
     {
         id: 71,
+        uuid: '550e8400-e29b-41d4-a716-446655440071',
         name: 'Asus ZenBook 14',
         description: 'Slim ultrabook with OLED display.',
         image_url: 'https://picsum.photos/seed/zenbook14/640/480',
@@ -502,6 +573,7 @@ const products: Partial<ProductEntity>[] = [
     },
     {
         id: 72,
+        uuid: '550e8400-e29b-41d4-a716-446655440072',
         name: 'Huawei MatePad 11',
         description: 'Productivity-focused Android tablet.',
         image_url: 'https://picsum.photos/seed/matepad11/640/480',
@@ -509,6 +581,7 @@ const products: Partial<ProductEntity>[] = [
     },
     {
         id: 73,
+        uuid: '550e8400-e29b-41d4-a716-446655440073',
         name: 'Redmi Note 13 Pro',
         description: 'Mid-range smartphone with high refresh display.',
         image_url: 'https://picsum.photos/seed/redminote13pro/640/480',
@@ -516,6 +589,7 @@ const products: Partial<ProductEntity>[] = [
     },
     {
         id: 74,
+        uuid: '550e8400-e29b-41d4-a716-446655440074',
         name: 'Vivo X100',
         description: 'Camera-centric flagship smartphone.',
         image_url: 'https://picsum.photos/seed/vivox100/640/480',
@@ -523,6 +597,7 @@ const products: Partial<ProductEntity>[] = [
     },
     {
         id: 75,
+        uuid: '550e8400-e29b-41d4-a716-446655440075',
         name: 'Oppo Enco Air 3',
         description: 'True wireless earbuds with deep bass.',
         image_url: 'https://picsum.photos/seed/oppoencoair3/640/480',
@@ -530,6 +605,7 @@ const products: Partial<ProductEntity>[] = [
     },
     {
         id: 76,
+        uuid: '550e8400-e29b-41d4-a716-446655440076',
         name: 'Marshall Emberton Speaker',
         description: 'Portable Bluetooth speaker with rich sound.',
         image_url: 'https://picsum.photos/seed/marshallemberton/640/480',
@@ -537,6 +613,7 @@ const products: Partial<ProductEntity>[] = [
     },
     {
         id: 77,
+        uuid: '550e8400-e29b-41d4-a716-446655440077',
         name: 'Fire-Boltt Ninja Call Pro',
         description: 'Affordable smartwatch with Bluetooth calling.',
         image_url: 'https://picsum.photos/seed/fireboltt/640/480',
@@ -544,6 +621,7 @@ const products: Partial<ProductEntity>[] = [
     },
     {
         id: 78,
+        uuid: '550e8400-e29b-41d4-a716-446655440078',
         name: 'Usha Room Heater',
         description: 'Compact room heater for winter comfort.',
         image_url: 'https://picsum.photos/seed/ushheater/640/480',
@@ -551,6 +629,7 @@ const products: Partial<ProductEntity>[] = [
     },
     {
         id: 79,
+        uuid: '550e8400-e29b-41d4-a716-446655440079',
         name: 'Voltas 1.5 Ton Inverter AC',
         description: 'Energy efficient split air conditioner.',
         image_url: 'https://picsum.photos/seed/voltasac/640/480',
@@ -558,6 +637,7 @@ const products: Partial<ProductEntity>[] = [
     },
     {
         id: 80,
+        uuid: '550e8400-e29b-41d4-a716-446655440080',
         name: 'IFB Front Load Washing Machine',
         description: 'Fully automatic washing machine with steam wash.',
         image_url: 'https://picsum.photos/seed/ifbwashing/640/480',

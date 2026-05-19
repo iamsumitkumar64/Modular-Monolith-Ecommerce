@@ -37,7 +37,17 @@
     "seed:cart:user": "ts-node -r tsconfig-paths/register src/module/cart-server/infrastructure/database/seed/user.seed.ts",
     "migration:cart:generate": "npm run typeorm -- -d dist/module/cart-server/infrastructure/database/data-source.js migration:generate src/module/cart-server/infrastructure/database/migrations/InitMigration",
     "migration:cart:run": "npm run typeorm -- -d dist/module/cart-server/infrastructure/database/data-source.js migration:run",
-    "migration:cart:revert": "npm run typeorm -- -d dist/module/cart-server/infrastructure/database/data-source.js migration:revert"
+    "migration:cart:revert": "npm run typeorm -- -d dist/module/cart-server/infrastructure/database/data-source.js migration:revert",
+
+    "seed:order:user": "ts-node -r tsconfig-paths/register src/module/order-server/infrastructure/database/seed/user.seed.ts",
+    "migration:order:generate": "npm run typeorm -- -d dist/module/order-server/infrastructure/database/data-source.js migration:generate src/module/order-server/infrastructure/database/migrations/InitMigration",
+    "migration:order:run": "npm run typeorm -- -d dist/module/order-server/infrastructure/database/data-source.js migration:run",
+    "migration:order:revert": "npm run typeorm -- -d dist/module/order-server/infrastructure/database/data-source.js migration:revert",
+
+    "seed:finance:user": "ts-node -r tsconfig-paths/register src/module/finance-server/infrastructure/database/seed/user.seed.ts",
+    "migration:finance:generate": "npm run typeorm -- -d dist/module/finance-server/infrastructure/database/data-source.js migration:generate src/module/finance-server/infrastructure/database/migrations/InitMigration",
+    "migration:finance:run": "npm run typeorm -- -d dist/module/finance-server/infrastructure/database/data-source.js migration:run",
+    "migration:finance:revert": "npm run typeorm -- -d dist/module/finance-server/infrastructure/database/data-source.js migration:revert"
   },
   "dependencies": {
     "@nestjs-modules/mailer": "^1.10.3",

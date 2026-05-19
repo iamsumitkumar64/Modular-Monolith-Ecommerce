@@ -44,6 +44,15 @@ export default function HeaderComp() {
                     <>
                         <Button
                             variant="outlined"
+                            onClick={() => {
+                                router.push("/cart")
+                            }}
+                        >
+                            Cart
+                        </Button>
+
+                        <Button
+                            variant="outlined"
                             sx={{ color: "#DB2D43", borderColor: "#DB2D43" }}
                             onClick={async () => { await handleLogOut() }}
                         >
