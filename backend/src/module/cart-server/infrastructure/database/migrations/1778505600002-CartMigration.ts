@@ -26,12 +26,14 @@ export class CartMigration1778505600002 implements MigrationInterface {
                 columnNames: ["user_uuid"],
                 referencedTableName: "user",
                 referencedColumnNames: ["uuid"],
+                name: "FK_cart_user",
                 onDelete: "CASCADE",
             })
         );
     }
 
     public async down(queryRunner: QueryRunner): Promise<void> {
+        await queryRunner.dropForeignKey("cart", "FK_cart_user");
         await queryRunner.query(`DROP INDEX IF EXISTS idx_cart_user_uuid`);
         await queryRunner.dropTable("cart", true);
     }

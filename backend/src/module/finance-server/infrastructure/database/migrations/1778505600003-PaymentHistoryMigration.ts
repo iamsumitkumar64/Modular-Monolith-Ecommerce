@@ -1,4 +1,4 @@
-import { MigrationInterface, QueryRunner, Table } from "typeorm";
+import { MigrationInterface, QueryRunner, Table, TableForeignKey } from "typeorm";
 
 export class PaymentHistoryMigration1778505600003 implements MigrationInterface {
     name = "PaymentHistoryMigration1778505600003";
@@ -24,9 +24,31 @@ export class PaymentHistoryMigration1778505600003 implements MigrationInterface 
             }),
             true
         );
+        await queryRunner.createForeignKey(
+            "payment_history",
+            new TableForeignKey({
+                columnNames: ["user_uuid"],
+                referencedTableName: "user",
+                referencedColumnNames: ["uuid"],
+                name: "FK_payment_history_user",
+                onDelete: "CASCADE",
+            })
+        );
+        await queryRunner.createForeignKey(
+            "payment_history",
+            new TableForeignKey({
+                columnNames: ["card_uuid"],
+                referencedTableName: "payment_card",
+                referencedColumnNames: ["uuid"],
+                name: "FK_payment_history_card",
+                onDelete: "SET NULL",
+            })
+        );
     }
 
     public async down(queryRunner: QueryRunner): Promise<void> {
+        await queryRunner.dropForeignKey("payment_history", "FK_payment_history_user");
+        await queryRunner.dropForeignKey("payment_history", "FK_payment_history_card");
         await queryRunner.dropTable("payment_history", true);
         await queryRunner.query(`DROP TYPE "finance_schema"."payment_history_type_enum"`);
     }

@@ -1,4 +1,4 @@
-import { MigrationInterface, QueryRunner, Table } from "typeorm";
+import { MigrationInterface, QueryRunner, Table, TableForeignKey } from "typeorm";
 
 export class PaymentCardMigration1778505600002 implements MigrationInterface {
     name = "PaymentCardMigration1778505600002";
@@ -22,9 +22,20 @@ export class PaymentCardMigration1778505600002 implements MigrationInterface {
             }),
             true
         );
+        await queryRunner.createForeignKey(
+            "payment_card",
+            new TableForeignKey({
+                columnNames: ["user_uuid"],
+                referencedTableName: "user",
+                referencedColumnNames: ["uuid"],
+                name: "FK_payment_card_user",
+                onDelete: "CASCADE",
+            })
+        );
     }
 
     public async down(queryRunner: QueryRunner): Promise<void> {
+        await queryRunner.dropForeignKey("payment_card", "FK_payment_card_user");
         await queryRunner.dropTable("payment_card", true);
     }
 }

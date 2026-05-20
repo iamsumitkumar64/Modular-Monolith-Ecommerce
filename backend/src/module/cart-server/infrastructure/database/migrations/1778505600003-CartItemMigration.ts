@@ -27,6 +27,7 @@ export class CartItemMigration1778505600003 implements MigrationInterface {
                 columnNames: ["cart_uuid"],
                 referencedTableName: "cart",
                 referencedColumnNames: ["uuid"],
+                name: "FK_cart_item_cart",
                 onDelete: "CASCADE",
             })
         );
@@ -36,12 +37,15 @@ export class CartItemMigration1778505600003 implements MigrationInterface {
                 columnNames: ["product_uuid"],
                 referencedTableName: "product",
                 referencedColumnNames: ["uuid"],
+                name: "FK_cart_item_product",
                 onDelete: "CASCADE",
             })
         );
     }
 
     public async down(queryRunner: QueryRunner): Promise<void> {
+        await queryRunner.dropForeignKey("cart_item", "FK_cart_item_cart");
+        await queryRunner.dropForeignKey("cart_item", "FK_cart_item_product");
         await queryRunner.dropTable("cart_item", true);
     }
 }
