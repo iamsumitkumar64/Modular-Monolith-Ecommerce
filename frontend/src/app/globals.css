@@ -12,7 +12,7 @@ body {
   font-weight: 900;
   user-select: none;
   overflow: hidden;
-  background-color: #f3f2ef;
+  background-color: #faf7f7;
 }
 
 button:hover,
@@ -35,4 +35,27 @@ p {
   right: 0;
   bottom: 0;
   width: 9%;
+}
+
+button,
+.MuiButtonBase-root {
+  padding: 0.5rem 1rem;
+  font-size: 1rem;
+  font-weight: 800;
+  color: rgb(0, 81, 104);
+  background: rgb(255, 255, 255);
+  border: 1px solid rgb(180, 180, 180);
+  border-radius: 16px;
+  cursor: pointer;
+}
+
+button:hover {
+  background: rgb(0, 100, 128);
+  color: #fff;
+  transform: scale(1.05);
+}
+
+button:disabled {
+  background-color: #e2e2e2;
+  cursor: not-allowed;
 }

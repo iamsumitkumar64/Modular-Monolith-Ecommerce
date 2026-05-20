@@ -2,7 +2,7 @@ import { Injectable, Logger } from '@nestjs/common';
 import { Cron, CronExpression } from '@nestjs/schedule';
 import { OutboxRepository } from '../../repository/outbox.repo';
 import { OutboxStatusEnum } from 'src/module/user-server/domain/outbox/outbox.enum';
-import { RabbitMQService } from 'src/common/infrastruture/rabbit-mq/rabbit-mq.service';
+import { RabbitMQService } from 'src/module/common/infrastruture/rabbit-mq/rabbit-mq.service';
 
 @Injectable()
 export class OutboxEntryPublisherCronService {

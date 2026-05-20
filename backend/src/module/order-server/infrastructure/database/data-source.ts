@@ -5,6 +5,8 @@ import 'dotenv/config';
 //Entities
 import { InboxEntity } from "../../domain/inbox/inbox.entity";
 import { UserEntity } from "../../domain/user/user.entity";
+import { OrderEntity } from "../../domain/order/order.entity";
+import { OrderItemEntity } from "../../domain/order-item/order-item.entity";
 
 const options: DataSourceOptions = {
     type: process.env.DB_POSTGRES_TYPE as any,
@@ -15,6 +17,7 @@ const options: DataSourceOptions = {
     database: process.env.DB_POSTGRES_DATABASE,
     entities: [
         UserEntity, InboxEntity,
+        OrderEntity, OrderItemEntity,
     ],
     schema: process.env.DB_POSTGRES_ORDER_SCHEMA || 'order_schema',
     synchronize: false,

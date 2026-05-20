@@ -11,7 +11,6 @@ import { useAppDispatch, useAppSelector } from "@/redux/hooks.ts";
 import { addItemToCart } from "@/redux/feature/cart/cart-action";
 import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
 import { Product } from "@/redux/feature/product/product-type";
-import Image from "next/image";
 
 export default function Home() {
   const dispatch = useAppDispatch();

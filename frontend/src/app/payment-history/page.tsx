@@ -1,73 +1,41 @@
-"use client"
+"use client";
 
-import { useEffect, useState } from "react";
-import { useSelector } from "react-redux";
-import { Box, Button, Card, CardContent, Container, Typography, CircularProgress } from "@mui/material";
-import { RootState } from "@/redux/store";
-
-const API_URL = process.env.NEXT_PUBLIC_BACKEND_URL;
+import { useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { Box, Card, CardContent, CircularProgress, Container, Typography } from "@mui/material";
+import { RootState, AppDispatch } from "@/redux/store";
+import styles from "./payment-history.module.css"
+import { getAccount, getHistories } from "@/redux/feature/payment/payment.action";
 
 export default function PaymentHistoryPage() {
-    const token = useSelector((state: RootState) => state.authReducer.token);
-    const [histories, setHistories] = useState<any[]>([]);
-    const [account, setAccount] = useState<any>(null);
-    const [loading, setLoading] = useState(true);
-    const [error, setError] = useState<string | null>(null);
+    const dispatch = useDispatch<AppDispatch>();
+    const { account, histories, loading, error } = useSelector((state: RootState) => state.paymentReducer);
 
     useEffect(() => {
-        if (!token) return;
-        loadData();
-    }, [token]);
-
-    const loadData = async () => {
-        setLoading(true);
-        setError(null);
-
-        try {
-            const [historyRes, accountRes] = await Promise.all([
-                fetch(`${API_URL}/finance/histories`, {
-                    headers: { Authorization: token }
-                }),
-                fetch(`${API_URL}/finance/account`, {
-                    headers: { Authorization: token }
-                })
-            ]);
-
-            const historiesData = await historyRes.json();
-            const accountData = await accountRes.json();
-
-            if (!historyRes.ok) throw new Error(historiesData.message || "Unable to fetch payment history");
-            if (!accountRes.ok) throw new Error(accountData.message || "Unable to fetch account data");
-
-            setHistories(historiesData.data || []);
-            setAccount(accountData.data || null);
-        } catch (err: any) {
-            setError(err.message || "Unable to load payment history");
-        } finally {
-            setLoading(false);
-        }
-    };
+        dispatch(getAccount());
+        dispatch(getHistories());
+    }, [dispatch]);
 
     return (
-        <Container maxWidth="lg" style={{ padding: 24 }}>
-            <Typography variant="h4" component="h1" style={{ marginBottom: 16 }}>
-                Payment History
+        <Container maxWidth="xl" className={styles.container}>
+            <Typography variant="h4" component="h1" className={styles.header}>
+                Payment Account
             </Typography>
 
             {loading && (
-                <Box display="flex" justifyContent="center" marginTop={6}>
+                <Box display="flex" justifyContent="center" marginTop="5%">
                     <CircularProgress />
                 </Box>
             )}
 
             {error && (
-                <Typography color="error" style={{ marginBottom: 16 }}>
+                <Typography color="error" style={{ marginBottom: "2%" }}>
                     {error}
                 </Typography>
             )}
 
             {!loading && account && (
-                <Card style={{ marginBottom: 24 }}>
+                <Card className={styles.accountCard}>
                     <CardContent>
                         <Typography variant="h6">Account Balance</Typography>
                         <Typography variant="body1">₹ {account.balance?.toFixed(2)}</Typography>
@@ -79,14 +47,20 @@ export default function PaymentHistoryPage() {
                 <Typography>No payment history yet.</Typography>
             )}
 
-            <Box display="grid" gap={16}>
-                {histories.map((item) => (
-                    <Card key={item.uuid}>
+            <Typography variant="h4" component="h1" className={styles.header}>
+                Payment History
+            </Typography>
+            <Box className={styles.historyList}>
+                {histories.map((item, idx) => (
+                    <Card key={item.uuid} className={styles.historyCard}>
                         <CardContent>
-                            <Typography variant="subtitle1">{item.type?.toUpperCase()}</Typography>
+                            <Typography variant="subtitle1">{idx}</Typography>
+                            <Typography variant="subtitle2">Type: {item.type?.toUpperCase()}</Typography>
                             <Typography>Amount: ₹ {Number(item.amount).toFixed(2)}</Typography>
                             <Typography>{item.description || "No description"}</Typography>
-                            <Typography color="textSecondary">{new Date(item.created_at).toLocaleString()}</Typography>
+                            <Typography color="textSecondary">
+                                {new Date(item.created_at).toLocaleString()}
+                            </Typography>
                         </CardContent>
                     </Card>
                 ))}

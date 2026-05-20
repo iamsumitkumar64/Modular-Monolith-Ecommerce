@@ -47,7 +47,13 @@
     "seed:finance:user": "ts-node -r tsconfig-paths/register src/module/finance-server/infrastructure/database/seed/user.seed.ts",
     "migration:finance:generate": "npm run typeorm -- -d dist/module/finance-server/infrastructure/database/data-source.js migration:generate src/module/finance-server/infrastructure/database/migrations/InitMigration",
     "migration:finance:run": "npm run typeorm -- -d dist/module/finance-server/infrastructure/database/data-source.js migration:run",
-    "migration:finance:revert": "npm run typeorm -- -d dist/module/finance-server/infrastructure/database/data-source.js migration:revert"
+    "migration:finance:revert": "npm run typeorm -- -d dist/module/finance-server/infrastructure/database/data-source.js migration:revert",
+
+
+    "seed:shipment:user": "ts-node -r tsconfig-paths/register src/module/shipment-server/infrastructure/database/seed/user.seed.ts",
+    "migration:shipment:generate": "npm run typeorm -- -d dist/module/shipment-server/infrastructure/database/data-source.js migration:generate src/module/shipment-server/infrastructure/database/migrations/InitMigration",
+    "migration:shipment:run": "npm run typeorm -- -d dist/module/shipment-server/infrastructure/database/data-source.js migration:run",
+    "migration:shipment:revert": "npm run typeorm -- -d dist/module/shipment-server/infrastructure/database/data-source.js migration:revert"
   },
   "dependencies": {
     "@nestjs-modules/mailer": "^1.10.3",

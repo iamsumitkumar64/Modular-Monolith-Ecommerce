@@ -2,7 +2,7 @@ import { BadRequestException, Injectable } from "@nestjs/common";
 import { LoginUserDto } from "./login-user.dto";
 import type { Request } from "express";
 import { UserRepository } from "src/module/user-server/infrastructure/repository/user.repo";
-import { BcryptService } from "src/common/services/bcrypt.service";
+import { BcryptService } from "src/module/common/services/bcrypt.service";
 import { JwtHelperService } from "src/module/user-server/infrastructure/services/jwt.service";
 
 @Injectable()

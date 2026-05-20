@@ -1,0 +1,33 @@
+import { MigrationInterface, QueryRunner, Table } from "typeorm";
+
+export class PaymentHistoryMigration1778505600003 implements MigrationInterface {
+    name = "PaymentHistoryMigration1778505600003";
+
+    public async up(queryRunner: QueryRunner): Promise<void> {
+        await queryRunner.query(`CREATE TYPE "finance_schema"."payment_history_type_enum" AS ENUM('payment', 'topup');`);
+
+        await queryRunner.createTable(
+            new Table({
+                name: "payment_history",
+                columns: [
+                    { name: "uuid", type: "uuid", isPrimary: true, generationStrategy: "uuid", default: "uuid_generate_v4()", },
+                    { name: "id", type: "bigint", isGenerated: true, generationStrategy: "increment", isUnique: true, isNullable: false, },
+                    { name: "user_uuid", type: "uuid", isNullable: false, },
+                    { name: "amount", type: "float", isNullable: false, },
+                    { name: "type", type: `"finance_schema"."payment_history_type_enum"`, default: `'payment'` },
+                    { name: "card_uuid", type: "uuid", isNullable: true, },
+                    { name: "description", type: "varchar", length: "255", isNullable: true, },
+                    { name: "created_at", type: "timestamp", default: "now()", },
+                    { name: "updated_at", type: "timestamp", default: "now()", },
+                    { name: "deleted_at", type: "timestamp", isNullable: true, },
+                ],
+            }),
+            true
+        );
+    }
+
+    public async down(queryRunner: QueryRunner): Promise<void> {
+        await queryRunner.dropTable("payment_history", true);
+        await queryRunner.query(`DROP TYPE "finance_schema"."payment_history_type_enum"`);
+    }
+}

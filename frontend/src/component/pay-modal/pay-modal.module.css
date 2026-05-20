@@ -1,0 +1,63 @@
+.overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+}
+
+.modal {
+    width: 50%;
+    max-width: 400px;
+    background-color: white;
+    padding: 2%;
+    border-radius: 1%;
+    display: flex;
+    flex-direction: column;
+}
+
+.accountBalance {
+    margin-bottom: 2%;
+    font-weight: bold;
+}
+
+.cardList {
+    display: flex;
+    flex-direction: column;
+    gap: 1%;
+}
+
+.cardItem {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 1%;
+}
+
+.cardContent {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.buttonsContainer {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 2%;
+}
+
+.bottomButtons {
+    display: flex;
+    justify-content: flex-end;
+    gap: 1%;
+    margin-top: 2%;
+}
+
+.outlinedButton {
+    color: #db2d43;
+    border-color: #db2d43;
+}

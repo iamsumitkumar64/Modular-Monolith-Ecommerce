@@ -1,12 +1,11 @@
 import { NestFactory } from '@nestjs/core';
 import { AppModule } from './app.module';
 import { ValidationPipe } from '@nestjs/common';
-import { AllExceptionsFilter } from './common/infrastruture/filters/all-exceptions.filter';
-import { createSchemas } from './bootstrap/db_schema.create';
+import { AllExceptionsFilter } from './module/common/infrastruture/filters/all-exceptions.filter';
+import { createSchemas } from './module/common/infrastruture/db/bootstrap/db_schema.create';
 
 async function bootstrap() {
   await createSchemas();
-
   const app = await NestFactory.create(AppModule);
 
   app.enableCors({

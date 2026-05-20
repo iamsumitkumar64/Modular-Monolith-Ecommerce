@@ -17,15 +17,12 @@ const options: DataSourceOptions = {
     password: process.env.DB_POSTGRES_PASSWORD,
     database: process.env.DB_POSTGRES_DATABASE,
     entities: [
-        UserEntity,
-        InboxEntity,
-        PaymentAccountEntity,
-        PaymentCardEntity,
-        PaymentHistoryEntity,
+        UserEntity, InboxEntity,
+        PaymentAccountEntity, PaymentCardEntity, PaymentHistoryEntity,
     ],
     schema: process.env.DB_POSTGRES_FINANCE_SCHEMA || 'finance_schema',
-    synchronize: true,
-    migrations: ['dist/module/order-server/infrastructure/database/migrations/*{.ts,.js}'],
+    synchronize: false,
+    migrations: ['dist/module/finance-server/infrastructure/database/migrations/*{.ts,.js}'],
 };
 
 const financeDataSource = new DataSource(options);

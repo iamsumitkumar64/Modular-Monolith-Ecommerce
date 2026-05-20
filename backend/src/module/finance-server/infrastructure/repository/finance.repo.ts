@@ -24,9 +24,16 @@ export class FinanceRepository {
         return this.dataSource.getRepository(PaymentHistoryEntity);
     }
 
-    async findCards(user_uuid: string) {
+    async findUserCards(user_uuid: string) {
         return await this.getCardRepository().find({
             where: { user_uuid },
+            order: { created_at: "DESC" }
+        });
+    }
+
+    async findCard(user_uuid: string, uuid: string) {
+        return await this.getCardRepository().findOne({
+            where: { uuid, user_uuid },
             order: { created_at: "DESC" }
         });
     }

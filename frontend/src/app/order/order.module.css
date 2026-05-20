@@ -1,0 +1,80 @@
+.container {
+    width: 100%;
+    height: 95%;
+    padding-top: 1%;
+    padding-bottom: 1%;
+    display: flex;
+    flex-direction: column;
+    border-left: 1px solid black;
+    border-right: 1px solid black;
+    border-bottom: 1px solid black;
+    box-shadow: 0 12 0 15px rgba(0, 0, 0, 0.05);
+    background-color: #ffffff;
+}
+
+.header {
+    width: 100%;
+    padding-bottom: .5%;
+    border-bottom: 1px solid black;
+    margin-bottom: 1%;
+}
+
+.heading {
+    color: #111827;
+}
+
+.subHeading {
+    color: #6b7280;
+}
+
+.scrollWrapper {
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    padding-right: 1%;
+}
+
+.loader {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px 0;
+}
+
+.endMessage {
+    text-align: center;
+    color: #6b7280;
+    margin-top: 10px;
+    font-weight: 500;
+}
+
+.orderCard {
+    margin-bottom: 15px;
+    border: 1px solid #e5e7eb;
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+}
+
+.itemsWrapper {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-top: 10px;
+}
+
+.itemCard {
+    display: flex;
+    align-items: center;
+    width: 200px;
+    padding: 10px;
+    border: 1px solid #e5e7eb;
+    border-radius: 6px;
+    background-color: #f9fafb;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+}
+
+.itemContent {
+    margin-left: 10px;
+    display: flex;
+    flex-direction: column;
+}

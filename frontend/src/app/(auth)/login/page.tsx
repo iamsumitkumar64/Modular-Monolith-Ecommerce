@@ -50,7 +50,6 @@ export default function LoginForm() {
                 </Typography>
 
                 <Button
-                    variant="outlined"
                     className={styles.providerLoginBox}
                 >
                     {/* <GoogleIcon /> */}
@@ -97,7 +96,6 @@ export default function LoginForm() {
                     </Box>
 
                     <Button
-                        variant="contained"
                         type="submit"
                         className={styles.button}
                     >

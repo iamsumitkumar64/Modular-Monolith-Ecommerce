@@ -104,7 +104,6 @@ export default function SignupForm() {
                     </Box>
 
                     <Button
-                        variant="contained"
                         type="submit"
                         className={styles.button}
                     >
@@ -112,7 +111,6 @@ export default function SignupForm() {
                     </Button>
 
                     <Button
-                        // variant="outlined"
                         className={styles.loginBtn}
                         onClick={() => router.replace("/login")}
                     >

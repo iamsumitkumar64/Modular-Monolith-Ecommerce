@@ -115,12 +115,20 @@
     top: 0;
     right: 0;
     background: white;
-    box-shadow: inset 0 0 0 1 rgb(255, 0, 0);
+    color: rgb(231, 0, 0);
+    box-shadow: inset 0 0 2 2 rgb(138, 138, 138);
 }
 
 .removeBtn:hover {
     background: white;
-    box-shadow: inset 0 0 5 5 rgb(255, 73, 73);
+    color: rgb(231, 0, 0);
+    box-shadow: inset 0 0 2 2 rgb(255, 55, 55);
+}
+
+.paybox {
+    position: absolute;
+    top: 45;
+    right: 20;
 }
 
 .summary {
@@ -163,31 +171,6 @@
     justify-content: center;
     gap: 0.5rem;
     margin-top: 1rem;
-}
-
-.quantityWrapper button {
-    width: 100%;
-    max-width: 120px;
-    padding: 0.5rem 1rem;
-    font-size: 1rem;
-    font-weight: 800;
-    color: rgb(0, 65, 170);
-    background: rgb(211, 211, 211);
-    border: none;
-    border-radius: 16px;
-    cursor: pointer;
-    transition: background 0.2s, transform 0.1s;
-}
-
-.quantityWrapper button:hover {
-    background: rgb(0, 100, 128);
-    color: #fff;
-    transform: scale(1.05);
-}
-
-.quantityWrapper button:disabled {
-    background-color: #aaa;
-    cursor: not-allowed;
 }
 
 .quantityWrapper span {

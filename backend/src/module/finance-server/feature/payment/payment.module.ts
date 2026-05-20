@@ -1,12 +1,27 @@
 import { Module } from "@nestjs/common";
-import { PaymentController } from "./payment.controller";
-import { PaymentService } from "./payment.service";
-import { FinanceRepository } from "../../infrastructure/repository/finance.repo";
+import { RouterModule } from "@nestjs/core";
+import { GetAccountModule } from "./get-account/get-account.module";
+import { GetPayHistoryModule } from "./get-pay-history/get-pay-history.module";
+import { PayModule } from "./pay/pay.module";
 
 @Module({
-    imports: [],
-    controllers: [PaymentController],
-    providers: [PaymentService, FinanceRepository],
+    imports: [
+        GetAccountModule,
+        GetPayHistoryModule,
+        PayModule,
+        RouterModule.register([
+            {
+                path: 'payment',
+                children: [
+                    { path: '', module: GetAccountModule },
+                    { path: '', module: GetPayHistoryModule },
+                    { path: '', module: PayModule },
+                ],
+            },
+        ]),
+    ],
+    controllers: [],
+    providers: [],
     exports: [],
 })
 export class PaymentModule { }
