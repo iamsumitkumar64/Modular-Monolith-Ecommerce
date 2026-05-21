@@ -1,4 +1,4 @@
 export enum PaymentHistoryTypeEnum {
-    PAYMENT = 'payment',
+    PAYMENT_USING_CARD = 'payment_using_card',
     TOPUP = 'topup'
 }

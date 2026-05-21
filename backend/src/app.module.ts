@@ -24,6 +24,11 @@ import { PaymentCardModule } from './module/finance-server/feature/payment-card/
 import { shipmentDataSource } from './module/shipment-server/infrastructure/database/data-source';
 import { UserAddressModule } from './module/shipment-server/feature/user-address/user-address.module';
 import { OrderModule } from './module/order-server/feature/order/order.module';
+import * as OrderCronModule from './module/order-server/infrastructure/cron/cron.module';
+import { PaymentOrderModule } from './module/finance-server/feature/order/order.module';
+import * as FinanceCronModule from './module/finance-server/infrastructure/cron/cron.module';
+import * as ShipmentCronModule from './module/shipment-server/infrastructure/cron/cron.module';
+import { SocketModule } from './module/common/socket/socket.module';
 
 @Module({
   imports: [
@@ -39,6 +44,7 @@ import { OrderModule } from './module/order-server/feature/order/order.module';
     }),
     RabbitMQModule,
     ScheduleModule.forRoot(),
+    SocketModule,
 
     //User Modules
     TypeOrmModule.forRoot({
@@ -58,6 +64,7 @@ import { OrderModule } from './module/order-server/feature/order/order.module';
       retryDelay: 5000
     }),
     ProductModule,
+    PaymentOrderModule,
 
     // Cart Modules
     TypeOrmModule.forRoot({
@@ -76,6 +83,7 @@ import { OrderModule } from './module/order-server/feature/order/order.module';
       retryDelay: 5000
     }),
     OrderModule,
+    OrderCronModule.CronModule,
 
     // finance Modules
     TypeOrmModule.forRoot({
@@ -86,6 +94,7 @@ import { OrderModule } from './module/order-server/feature/order/order.module';
     }),
     PaymentModule,
     PaymentCardModule,
+    FinanceCronModule.CronModule,
 
     // shipment Modules
     TypeOrmModule.forRoot({
@@ -94,7 +103,8 @@ import { OrderModule } from './module/order-server/feature/order/order.module';
       retryAttempts: 10,
       retryDelay: 5000
     }),
-    UserAddressModule
+    UserAddressModule,
+    ShipmentCronModule.CronModule,
   ],
   controllers: [AppController],
   providers: [AppService, BcryptService, UserRepository, JwtHelperService],

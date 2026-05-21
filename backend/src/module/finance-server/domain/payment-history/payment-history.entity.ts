@@ -25,7 +25,7 @@ export class PaymentHistoryEntity {
     @Column({ type: "float", nullable: false })
     amount: number;
 
-    @Column({ type: "enum", enum: PaymentHistoryTypeEnum, default: PaymentHistoryTypeEnum.PAYMENT })
+    @Column({ type: "enum", enum: PaymentHistoryTypeEnum, default: PaymentHistoryTypeEnum.PAYMENT_USING_CARD })
     type: PaymentHistoryTypeEnum;
 
     @Column({ type: "varchar", length: 255, nullable: true })

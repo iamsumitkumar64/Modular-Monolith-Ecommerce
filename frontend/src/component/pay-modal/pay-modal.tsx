@@ -10,14 +10,16 @@ import AddCardModal from "../add-card-modal/AddCardModal";
 import AddAmountModal from "../add-amount-modal/AddAmountModal";
 import { PaymentCard } from "@/redux/feature/payment/payment.type";
 import styles from "./pay-modal.module.css";
+import DeleteIcon from '@mui/icons-material/Delete';
 
 interface PayModalProps {
     open: boolean;
     onClose: () => void;
     amount: number;
+    order_uuid: string;
 }
 
-export default function PayModal({ open, onClose, amount }: PayModalProps) {
+export default function PayModal({ open, onClose, amount, order_uuid }: PayModalProps) {
     const dispatch = useAppDispatch();
     const { cards, account, loading } = useAppSelector((state: RootState) => state.paymentReducer);
     const [selectedCard, setSelectedCard] = useState<string>("");
@@ -50,7 +52,7 @@ export default function PayModal({ open, onClose, amount }: PayModalProps) {
                 return;
             }
 
-            await dispatch(pay({ amount, card_uuid: selectedCard })).unwrap();
+            await dispatch(pay({ amount, card_uuid: selectedCard, order_uuid })).unwrap();
             onClose();
         } catch (err: any) {
             enqueueSnackbar(err, { variant: "warning" });
@@ -63,7 +65,7 @@ export default function PayModal({ open, onClose, amount }: PayModalProps) {
         <Box className={styles.overlay}>
             <Box className={styles.modal}>
                 <Typography className={styles.accountBalance}>
-                    Account balance {account?.balance}
+                    Account balance: ${account?.balance || 0}
                 </Typography>
 
                 <Typography variant="h6" mb={2}>
@@ -85,13 +87,13 @@ export default function PayModal({ open, onClose, amount }: PayModalProps) {
                                         **** **** {Number(card.card_number) % 10000} | {card.name_on_card}
                                     </Typography>
                                     <FormControlLabel value={card.uuid} control={<Radio />} label="" />
+                                    <Button
+                                        className={styles.outlinedButton}
+                                        onClick={() => handleDeleteCard(card.uuid)}
+                                    >
+                                        <DeleteIcon />
+                                    </Button>
                                 </CardContent>
-                                <Button
-                                    className={styles.outlinedButton}
-                                    onClick={() => handleDeleteCard(card.uuid)}
-                                >
-                                    Delete Card
-                                </Button>
                             </Card>
                         ))}
                     </Box>

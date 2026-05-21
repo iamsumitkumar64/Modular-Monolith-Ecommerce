@@ -1,11 +1,11 @@
 import { MigrationInterface, QueryRunner, Table, TableForeignKey } from "typeorm";
 
-export class orderMigration1778505600002 implements MigrationInterface {
-    name = "orderMigration1778505600002";
+export class orderMigration1778505600001 implements MigrationInterface {
+    name = "orderMigration1778505600001";
 
     public async up(queryRunner: QueryRunner): Promise<void> {
         await queryRunner.query(`CREATE TYPE "order_schema"."payment_status_type_enum" AS ENUM('pending', 'paid', 'cancelled');`);
-        await queryRunner.query(`CREATE TYPE "order_schema"."order_status_type_enum" AS ENUM('pending', 'completed');`);
+        await queryRunner.query(`CREATE TYPE "order_schema"."order_status_type_enum" AS ENUM('pending', 'processing','packed','delivered');`);
 
         await queryRunner.createTable(new Table({
             name: "order",

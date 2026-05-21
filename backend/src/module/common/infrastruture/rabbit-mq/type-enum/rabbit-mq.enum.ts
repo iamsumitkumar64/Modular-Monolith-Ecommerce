@@ -18,6 +18,8 @@ export enum ExchangeNameEnum {
 export enum RoutingKeyEnum {
     USER_REGISTERED = 'user.registered',
     ORDER_CREATED = 'order.created',
+    ORDER_PAID = 'order.paid',
+    ORDER_STATUS_CHANGED = 'order.status.changed',
 }
 
 export enum QueueEnum {
@@ -27,8 +29,10 @@ export enum QueueEnum {
     FINANCE_USER_REGISTERED_QUEUE = 'finance.user.registered.queue',
     SHIPMENT_USER_REGISTERED_QUEUE = 'shipment.user.registered.queue',
     CART_ORDER_CREATED_QUEUE = 'cart.order.created.queue',
-    FINANCE_ORDER_CREATED_QUEUE = 'finance.order.created.queue',
     SHIPMENT_ORDER_CREATED_QUEUE = 'shipment.order.created.queue',
+    SHIPMENT_ORDER_PAID_QUEUE = 'shipment.order.paid.queue',
+    ORDER_PAID_QUEUE = 'order.paid.queue',
+    ORDER_STATUS_CHANGED_QUEUE = 'order.status.changed.queue',
 }
 
 export enum RetryMechanismHeaderEnum {

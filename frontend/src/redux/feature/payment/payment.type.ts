@@ -55,6 +55,7 @@ export interface AddAmountPayload {
 export interface PayPayload {
     amount: number;
     card_uuid: string;
+    order_uuid: string
 }
 
 export interface PaymentState {

@@ -29,7 +29,6 @@ export class ItemRemoveFromCartService {
 
         // deduct price of removed item
         const curr_price = isCartExists.total_price - isCartItemExists.product.price * isCartItemExists.quantity;
-        console.log(curr_price, isCartExists.total_price, isCartItemExists.product.price, isCartItemExists.quantity);
         await this.cartRepo.updateCartTotal(isCartExists.uuid, curr_price);
 
         // delete item entry

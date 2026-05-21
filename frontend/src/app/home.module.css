@@ -88,7 +88,13 @@
 .price {
   font-size: 1rem;
   font-weight: 700;
-  color: #16a34a;
+  color: #008a33;
+}
+
+.stock {
+  font-size: 1rem;
+  font-weight: 700;
+  color: #004d84;
 }
 
 .loader {
@@ -106,6 +112,7 @@
   padding-bottom: 2%;
   color: #6b7280;
 }
+
 /* 
 .addtocart {
   width: 100%;

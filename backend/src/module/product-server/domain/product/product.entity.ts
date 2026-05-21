@@ -31,6 +31,9 @@ export class ProductEntity {
     })
     image_url: string;
 
+    @Column({ type: "integer", nullable: false, default: 1, })
+    stock: number;
+
     @Column({
         type: "decimal",
         precision: 10,

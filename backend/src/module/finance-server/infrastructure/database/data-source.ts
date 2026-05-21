@@ -8,6 +8,7 @@ import { UserEntity } from "../../domain/user/user.entity";
 import { PaymentAccountEntity } from "../../domain/payment-account/payment-account.entity";
 import { PaymentCardEntity } from "../../domain/payment-card/payment-card.entity";
 import { PaymentHistoryEntity } from "../../domain/payment-history/payment-history.entity";
+import { OutboxEntity } from "../../domain/outbox/outbox.entity";
 
 const options: DataSourceOptions = {
     type: process.env.DB_POSTGRES_TYPE as any,
@@ -17,7 +18,7 @@ const options: DataSourceOptions = {
     password: process.env.DB_POSTGRES_PASSWORD,
     database: process.env.DB_POSTGRES_DATABASE,
     entities: [
-        UserEntity, InboxEntity,
+        UserEntity, InboxEntity, OutboxEntity,
         PaymentAccountEntity, PaymentCardEntity, PaymentHistoryEntity,
     ],
     schema: process.env.DB_POSTGRES_FINANCE_SCHEMA || 'finance_schema',

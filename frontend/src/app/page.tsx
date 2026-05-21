@@ -112,7 +112,8 @@ export default function Home() {
                 >
                   <Typography className={styles.productName}>{product.name}</Typography>
                   <Typography className={styles.description}>{product.description}</Typography>
-                  <Typography className={styles.price}>₹ {product.price}</Typography>
+                  <Typography className={styles.price}>Price: {product.price}</Typography>
+                  <Typography className={styles.stock}>Stock: {product.stock}</Typography>
 
                   <Button
                     className={styles.addtocart}

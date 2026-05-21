@@ -12,13 +12,18 @@ import * as ProductUserConsumer from 'src/module/product-server/infrastructure/r
 
 // Cart Service
 import * as CartServerUserRepo from 'src/module/cart-server/infrastructure/repository/user.repo';
+import * as CartServerCartRepo from 'src/module/cart-server/infrastructure/repository/cart.repo';
 import * as CartServerInboxRepo from 'src/module/cart-server/infrastructure/repository/inbox.repo';
 import * as CartUserConsumer from 'src/module/cart-server/infrastructure/rabbit-mq-consumer/user/user-registered/user-registered.consumer';
+import * as OrderCreatedConsumer from 'src/module/cart-server/infrastructure/rabbit-mq-consumer/order/order-created/order-created-consumer';
 
 // Order Service
 import * as OrderServerUserRepo from 'src/module/order-server/infrastructure/repository/user.repo';
 import * as OrderServerInboxRepo from 'src/module/order-server/infrastructure/repository/inbox.repo';
+import * as OrderServerOrderRepo from 'src/module/order-server/infrastructure/repository/order.repo';
 import * as OrderUserConsumer from 'src/module/order-server/infrastructure/rabbit-mq-consumer/user/user-registered/user-registered.consumer';
+import * as OrderPaidConsumer from 'src/module/order-server/infrastructure/rabbit-mq-consumer/order/order-paid/order-paid.consumer';
+import * as OrderStatusChangedConsumer from 'src/module/order-server/infrastructure/rabbit-mq-consumer/order/order-status-changed/order-status-changed.consumer';
 
 // finance Service
 import * as FinanceServerUserRepo from 'src/module/finance-server/infrastructure/repository/user.repo';
@@ -28,7 +33,11 @@ import * as FinanceUserConsumer from 'src/module/finance-server/infrastructure/r
 // shipment Service
 import * as ShipmentServerUserRepo from 'src/module/shipment-server/infrastructure/repository/user.repo';
 import * as ShipmentServerInboxRepo from 'src/module/shipment-server/infrastructure/repository/inbox.repo';
+import * as ShipmentOrderRepository from 'src/module/shipment-server/infrastructure/repository/order.repo';
+import * as ShipmentOrderItemRepository from 'src/module/shipment-server/infrastructure/repository/order.item.repo';
 import * as ShipmentUserConsumer from 'src/module/shipment-server/infrastructure/rabbit-mq-consumer/user/user-registered/user-registered.consumer';
+import * as ShipentOrderCreatedConsumer from 'src/module/shipment-server/infrastructure/rabbit-mq-consumer/order/order-created/order-created-consumer';
+import * as ShipmentOrderPaidConsumer from 'src/module/shipment-server/infrastructure/rabbit-mq-consumer/order/order-paid/order-paid.consumer';
 
 @Global()
 @Module({
@@ -47,24 +56,32 @@ import * as ShipmentUserConsumer from 'src/module/shipment-server/infrastructure
 
         // Cart Service
         CartServerUserRepo.UserRepository,
+        CartServerCartRepo.CartRepository,
         CartServerInboxRepo.InboxRepository,
         CartUserConsumer.UserRegisteredConsumer,
+        OrderCreatedConsumer.OrderCreatedConsumer,
 
         // order Service
         OrderServerUserRepo.UserRepository,
         OrderServerInboxRepo.InboxRepository,
         OrderUserConsumer.UserRegisteredConsumer,
+        OrderPaidConsumer.OrderPaidConsumer,
+        OrderServerOrderRepo.OrderRepository,
+        OrderStatusChangedConsumer.OrderStatusChangedConsumer,
 
         // finance Service
         FinanceServerUserRepo.UserRepository,
         FinanceServerInboxRepo.InboxRepository,
         FinanceUserConsumer.UserRegisteredConsumer,
 
-
         // shipment Service
         ShipmentServerUserRepo.UserRepository,
         ShipmentServerInboxRepo.InboxRepository,
         ShipmentUserConsumer.UserRegisteredConsumer,
+        ShipentOrderCreatedConsumer.OrderCreatedConsumer,
+        ShipmentOrderRepository.OrderRepository,
+        ShipmentOrderItemRepository.OrderItemRepository,
+        ShipmentOrderPaidConsumer.OrderPaidConsumer,
     ],
     exports: [RabbitMQService],
 })

@@ -6,6 +6,9 @@ import 'dotenv/config';
 import { InboxEntity } from "../../domain/inbox/inbox.entity";
 import { UserEntity } from "../../domain/user/user.entity";
 import { UserAddressEntity } from "../../domain/user_address/user.address.entity";
+import { OrderEntity } from "../../domain/order/order.entity";
+import { OrderItemEntity } from "../../domain/order-item/order-item.entity";
+import { OutboxEntity } from "../../domain/outbox/outbox.entity";
 
 const options: DataSourceOptions = {
     type: process.env.DB_POSTGRES_TYPE as any,
@@ -15,7 +18,8 @@ const options: DataSourceOptions = {
     password: process.env.DB_POSTGRES_PASSWORD,
     database: process.env.DB_POSTGRES_DATABASE,
     entities: [
-        UserEntity, InboxEntity, UserAddressEntity
+        UserEntity, InboxEntity, OutboxEntity,
+        UserAddressEntity, OrderEntity, OrderItemEntity,
     ],
     schema: process.env.DB_POSTGRES_SHIPMENT_SCHEMA || 'shipment_schema',
     synchronize: false,

@@ -1,7 +1,7 @@
 import { MigrationInterface, QueryRunner, Table, TableForeignKey } from "typeorm";
 
-export class orderItemMigration1778505600003 implements MigrationInterface {
-    name = "orderItemMigration1778505600003";
+export class orderItemMigration1778505600002 implements MigrationInterface {
+    name = "orderItemMigration1778505600002";
 
     public async up(queryRunner: QueryRunner): Promise<void> {
         await queryRunner.createTable(new Table({

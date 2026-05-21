@@ -98,14 +98,27 @@
 }
 
 .quantity,
-.price {
+.price,
+.stock {
     font-size: 1rem;
     font-weight: 700;
-    color: #16a34a;
+}
+
+.quantity {
+    color: #3d0082;
+}
+
+.price {
+    color: #008a33;
+}
+
+.stock {
+    color: #004d84;
 }
 
 .placeWrapper {
     display: flex;
+    flex-direction: column;
     justify-content: space-around;
     margin-top: 1%;
 }

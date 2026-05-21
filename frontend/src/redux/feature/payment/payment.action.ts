@@ -204,7 +204,7 @@ export const pay = createAsyncThunk<
         try {
             const token = getState().authReducer.token || "";
 
-            const res = await fetch(`${API_URL}/payment/pay`, {
+            const res = await fetch(`${API_URL}/payment/order/card/pay`, {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json",

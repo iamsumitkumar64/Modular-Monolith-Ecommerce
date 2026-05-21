@@ -18,38 +18,29 @@
     "test:cov": "jest --coverage",
     "test:debug": "node --inspect-brk -r tsconfig-paths/register -r ts-node/register node_modules/.bin/jest --runInBand",
     "test:e2e": "jest --config ./test/jest-e2e.json",
-
     "typeorm": "typeorm-ts-node-commonjs",
-
     "seed:user:user": "ts-node -r tsconfig-paths/register src/module/user-server/infrastructure/database/seed/user.seed.ts",
     "migration:user:generate": "npm run typeorm -- -d dist/module/user-server/infrastructure/database/data-source.js migration:generate src/module/user-server/infrastructure/database/migrations/InitMigration",
     "migration:user:run": "npm run typeorm -- -d dist/module/user-server/infrastructure/database/data-source.js migration:run",
     "migration:user:revert": "npm run typeorm -- -d dist/module/user-server/infrastructure/database/data-source.js migration:revert",
-
-
     "seed:product:product": "ts-node -r tsconfig-paths/register src/module/product-server/infrastructure/database/seed/product.seed.ts",
     "seed:product:user": "ts-node -r tsconfig-paths/register src/module/product-server/infrastructure/database/seed/user.seed.ts",
     "migration:product:generate": "npm run typeorm -- -d dist/module/product-server/infrastructure/database/data-source.js migration:generate src/module/product-server/infrastructure/database/migrations/InitMigration",
     "migration:product:run": "npm run typeorm -- -d dist/module/product-server/infrastructure/database/data-source.js migration:run",
     "migration:product:revert": "npm run typeorm -- -d dist/module/product-server/infrastructure/database/data-source.js migration:revert",
-
     "seed:cart:product": "ts-node -r tsconfig-paths/register src/module/cart-server/infrastructure/database/seed/product.seed.ts",
     "seed:cart:user": "ts-node -r tsconfig-paths/register src/module/cart-server/infrastructure/database/seed/user.seed.ts",
     "migration:cart:generate": "npm run typeorm -- -d dist/module/cart-server/infrastructure/database/data-source.js migration:generate src/module/cart-server/infrastructure/database/migrations/InitMigration",
     "migration:cart:run": "npm run typeorm -- -d dist/module/cart-server/infrastructure/database/data-source.js migration:run",
     "migration:cart:revert": "npm run typeorm -- -d dist/module/cart-server/infrastructure/database/data-source.js migration:revert",
-
     "seed:order:user": "ts-node -r tsconfig-paths/register src/module/order-server/infrastructure/database/seed/user.seed.ts",
     "migration:order:generate": "npm run typeorm -- -d dist/module/order-server/infrastructure/database/data-source.js migration:generate src/module/order-server/infrastructure/database/migrations/InitMigration",
     "migration:order:run": "npm run typeorm -- -d dist/module/order-server/infrastructure/database/data-source.js migration:run",
     "migration:order:revert": "npm run typeorm -- -d dist/module/order-server/infrastructure/database/data-source.js migration:revert",
-
     "seed:finance:user": "ts-node -r tsconfig-paths/register src/module/finance-server/infrastructure/database/seed/user.seed.ts",
     "migration:finance:generate": "npm run typeorm -- -d dist/module/finance-server/infrastructure/database/data-source.js migration:generate src/module/finance-server/infrastructure/database/migrations/InitMigration",
     "migration:finance:run": "npm run typeorm -- -d dist/module/finance-server/infrastructure/database/data-source.js migration:run",
     "migration:finance:revert": "npm run typeorm -- -d dist/module/finance-server/infrastructure/database/data-source.js migration:revert",
-
-
     "seed:shipment:user": "ts-node -r tsconfig-paths/register src/module/shipment-server/infrastructure/database/seed/user.seed.ts",
     "migration:shipment:generate": "npm run typeorm -- -d dist/module/shipment-server/infrastructure/database/data-source.js migration:generate src/module/shipment-server/infrastructure/database/migrations/InitMigration",
     "migration:shipment:run": "npm run typeorm -- -d dist/module/shipment-server/infrastructure/database/data-source.js migration:run",
@@ -62,8 +53,10 @@
     "@nestjs/core": "^11.0.1",
     "@nestjs/jwt": "^11.0.2",
     "@nestjs/platform-express": "^11.0.1",
+    "@nestjs/platform-socket.io": "^11.1.22",
     "@nestjs/schedule": "^6.1.3",
     "@nestjs/typeorm": "^11.0.1",
+    "@nestjs/websockets": "^11.1.22",
     "amqplib": "^2.0.1",
     "bcrypt": "^6.0.0",
     "class-transformer": "^0.5.1",

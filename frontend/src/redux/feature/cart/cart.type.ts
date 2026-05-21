@@ -4,6 +4,7 @@ export interface CartProduct {
     description: string;
     image_url: string;
     price: string;
+    stock: string;
     created_at: string;
     updated_at: string;
     deleted_at: string | null;

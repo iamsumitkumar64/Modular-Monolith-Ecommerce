@@ -35,7 +35,8 @@
     ".next/types/**/*.ts",
     ".next/dev/types/**/*.ts",
     "**/*.mts",
-    "src/lib/firebase.ts"
+    "src/lib/firebase.ts",
+    "src/globals.d.ts"
   ],
   "exclude": [
     "node_modules"
