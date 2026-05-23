@@ -2,10 +2,11 @@ import { BadRequestException, Injectable } from "@nestjs/common";
 import { FinanceRepository } from "src/module/finance-server/infrastructure/repository/finance.repo";
 import { UserEntity } from "src/module/finance-server/domain/user/user.entity";
 import { PayUsingCardDto } from "./pay-using-card-dto";
-import { PaymentHistoryTypeEnum } from "src/module/finance-server/domain/payment-history/payment.type.enum";
+import { PaymentHistoryTypeEnum } from "src/module/finance-server/domain/payment-history/payment.enum";
 import { OutboxRepository } from "src/module/finance-server/infrastructure/repository/outbox.repo";
 import { ExchangeNameEnum, RoutingKeyEnum } from "src/module/common/infrastruture/rabbit-mq/type-enum/rabbit-mq.enum";
 import { SocketService } from "src/module/common/socket/socket.service";
+import { SocketEventNameEnum } from "src/module/common/socket/socket.enum";
 
 @Injectable()
 export class PayUsingCardService {
@@ -41,10 +42,11 @@ export class PayUsingCardService {
         // deduct amount from account
         account.balance -= amount;
         const saved = await this.financeRepo.saveAccount(account);
-
+console.log(body);
         // make PayUsingCardment history
         await this.financeRepo.createHistory({
             user_uuid: user.uuid,
+            order_uuid: body.order_uuid,
             amount,
             type: PaymentHistoryTypeEnum.PAYMENT_USING_CARD,
             card_uuid: isCardExists.uuid,
@@ -69,7 +71,7 @@ export class PayUsingCardService {
             },
         });
 
-        await this.socketService.emitToUser(user.uuid, 'order_paid', { order_uuid: body.order_uuid });
+        await this.socketService.emitToUser(user.uuid, SocketEventNameEnum.ORDER_PAID, { order_uuid: body.order_uuid });
 
         return {
             data: saved,

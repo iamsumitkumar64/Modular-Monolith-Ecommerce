@@ -75,27 +75,3 @@ export const deleteAddress = createAsyncThunk<
         return rejectWithValue(err.message);
     }
 });
-
-export const updateAddress = createAsyncThunk<
-    AddressResponse,
-    UpdateAddressPayload,
-    { state: RootState }
->("address/updateAddress", async (payload, { getState, rejectWithValue }) => {
-    try {
-        const token = getState().authReducer.token || "";
-        const res = await fetch(`${API_URL}/user/address`, {
-            method: "PATCH",
-            headers: {
-                "Content-Type": "application/json",
-                Authorization: token,
-            },
-            body: JSON.stringify(payload),
-        });
-
-        const result = await res.json();
-        if (!res.ok) throw new Error(result.message);
-        return result;
-    } catch (err: any) {
-        return rejectWithValue(err.message);
-    }
-});

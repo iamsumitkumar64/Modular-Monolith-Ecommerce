@@ -28,6 +28,7 @@ export class CreateOrderService {
             items.map(item =>
                 this.orderItemRepo.createOrderItem({
                     order_uuid: order.uuid,
+                    product_uuid: item.product_uuid,
                     name: item.name,
                     description: item.description,
                     image_url: item.image_url,
@@ -65,6 +66,7 @@ export class CreateOrderService {
                 items: orderItems.map(item => ({
                     uuid: item.uuid,
                     name: item.name,
+                    product_uuid: item.product_uuid,
                     description: item.description,
                     image_url: item.image_url,
                     price: item.price,

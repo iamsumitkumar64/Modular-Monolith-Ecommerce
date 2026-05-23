@@ -2,6 +2,9 @@ import { IsUUID, IsNumber, IsArray, ValidateNested, IsString, IsOptional, IsPosi
 import { Type } from 'class-transformer';
 
 export class OrderItemDto {
+    @IsUUID()
+    product_uuid: string;
+
     @IsString()
     name: string;
 

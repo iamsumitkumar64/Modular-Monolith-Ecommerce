@@ -1,15 +1,20 @@
 "use client";
 
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { Box, Card, CardContent, CircularProgress, Container, Typography } from "@mui/material";
+import { Box, Button, Card, CardContent, CircularProgress, Container, Typography } from "@mui/material";
 import { RootState, AppDispatch } from "@/redux/store";
 import styles from "./payment-history.module.css"
 import { getAccount, getHistories } from "@/redux/feature/payment/payment.action";
+import { PaymentHistoryTypeEnum } from "@/enum/payment.enum";
+import AddCardModal from "@/component/add-card-modal/AddCardModal";
+import AddAmountModal from "@/component/add-amount-modal/AddAmountModal";
 
 export default function PaymentHistoryPage() {
     const dispatch = useDispatch<AppDispatch>();
     const { account, histories, loading, error } = useSelector((state: RootState) => state.paymentReducer);
+    const [openCardModal, setOpenCardModal] = useState(false);
+    const [openAmountModal, setOpenAmountModal] = useState(false);
 
     useEffect(() => {
         dispatch(getAccount());
@@ -18,11 +23,17 @@ export default function PaymentHistoryPage() {
 
     return (
         <Container maxWidth="xl" className={styles.container}>
-            <Typography variant="h4" component="h1" className={styles.header}>
-                Payment Account
-            </Typography>
+            <Box className={styles.header}>
+                <Typography variant="h4" className={styles.heading}>
+                    Payment Account
+                </Typography>
 
-            {loading && (
+                <Typography className={styles.subHeading}>
+                    Check Current Balance
+                </Typography>
+            </Box>
+
+            {/* {loading && (
                 <Box display="flex" justifyContent="center" marginTop="5%">
                     <CircularProgress />
                 </Box>
@@ -32,30 +43,56 @@ export default function PaymentHistoryPage() {
                 <Typography color="error" style={{ marginBottom: "2%" }}>
                     {error}
                 </Typography>
-            )}
+            )} */}
 
-            {!loading && account && (
+            {/* {!loading && account && ( */}
+            {account && (
                 <Card className={styles.accountCard}>
                     <CardContent>
                         <Typography variant="h6">Account Balance</Typography>
                         <Typography variant="body1">₹ {account.balance?.toFixed(2)}</Typography>
                     </CardContent>
+
+                    <Box className={styles.buttonsContainer}>
+                        <Button onClick={() => setOpenCardModal(true)}>
+                            Add Card
+                        </Button>
+
+                        <Button onClick={() => setOpenAmountModal(true)}>
+                            Add Amount
+                        </Button>
+                    </Box>
                 </Card>
             )}
 
-            {!loading && histories.length === 0 && (
+            {/* {!loading && histories.length === 0 && (
                 <Typography>No payment history yet.</Typography>
-            )}
+            )} */}
 
-            <Typography variant="h4" component="h1" className={styles.header}>
-                Payment History
-            </Typography>
+            <Box className={styles.header}>
+                <Typography variant="h4" className={styles.heading}>
+                    Payment History
+                </Typography>
+
+                <Typography className={styles.subHeading}>
+                    Check Payment Histories
+                </Typography>
+            </Box>
             <Box className={styles.historyList}>
                 {histories.map((item, idx) => (
                     <Card key={item.uuid} className={styles.historyCard}>
+                        <Box
+                            className={`${styles.historyLabel} ${item.type === PaymentHistoryTypeEnum.TOPUP
+                                ? styles.topup
+                                : styles.payment
+                                }`}
+                        >
+                            {item.type?.toUpperCase()}
+                        </Box>
+
                         <CardContent>
-                            <Typography variant="subtitle1">{idx}</Typography>
-                            <Typography variant="subtitle2">Type: {item.type?.toUpperCase()}</Typography>
+                            <Typography variant="subtitle1" className={styles.HistoryIndex}>#{idx + 1}</Typography>
+                            {/* <Typography variant="subtitle2">Type: {item.type?.toUpperCase()}</Typography> */}
                             <Typography>Amount: ₹ {Number(item.amount).toFixed(2)}</Typography>
                             <Typography>{item.description || "No description"}</Typography>
                             <Typography color="textSecondary">
@@ -65,6 +102,9 @@ export default function PaymentHistoryPage() {
                     </Card>
                 ))}
             </Box>
+
+            <AddCardModal open={openCardModal} onClose={() => setOpenCardModal(false)} />
+            <AddAmountModal open={openAmountModal} onClose={() => setOpenAmountModal(false)} />
         </Container>
     );
 }

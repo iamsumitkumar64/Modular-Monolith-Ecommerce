@@ -121,7 +121,7 @@ export default function Home() {
                     onClick={() => handleAddToCart(product.uuid)}
                   >
                     {cart?.items.find(item => item.product_uuid === product.uuid)
-                      ? "Increase Quantity"
+                      ? "Increase Quantity + 1"
                       : "Add To Cart"}
                   </Button>
                 </CardContent>

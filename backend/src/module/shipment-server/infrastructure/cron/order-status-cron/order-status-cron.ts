@@ -9,6 +9,7 @@ import {
 import { OutboxRepository } from '../../repository/outbox.repo';
 import { ExchangeNameEnum, RoutingKeyEnum } from 'src/module/common/infrastruture/rabbit-mq/type-enum/rabbit-mq.enum';
 import { SocketService } from 'src/module/common/socket/socket.service';
+import { SocketEventNameEnum } from 'src/module/common/socket/socket.enum';
 
 @Injectable()
 export class PaidOrderStatusCronService {
@@ -20,7 +21,7 @@ export class PaidOrderStatusCronService {
 
     private readonly logger = new Logger(PaidOrderStatusCronService.name);
 
-    @Cron(CronExpression.EVERY_5_SECONDS)
+    @Cron(CronExpression.EVERY_MINUTE)
     async handleCron() {
         // Fetch top 10 paid orders
         const orders = await this.orderRepo.findTopTenPaidButNotDeliveredOrderStatus();
@@ -30,6 +31,10 @@ export class PaidOrderStatusCronService {
         }
 
         for (const order of orders) {
+            if (order.order_status == OrderStatusEnum.RETURNED) {
+                this.logger.log(`Order Returned so can't process it`);
+            }
+
             let nextStatus: OrderStatusEnum | null = null;
 
             switch (order.order_status) {
@@ -67,7 +72,7 @@ export class PaidOrderStatusCronService {
                     message_payload: payload,
                 });
 
-                await this.socketService.emitToUser(order.user_uuid, 'order_status_changed', payload);
+                await this.socketService.emitToUser(order.user_uuid, SocketEventNameEnum.ORDER_STATUS_CHANGED, payload);
 
                 this.logger.log(
                     `Order ${order.uuid} updated from ${order.order_status} to ${nextStatus}`,

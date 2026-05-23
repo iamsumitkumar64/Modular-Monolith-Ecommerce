@@ -18,6 +18,9 @@ export class OrderItemEntity {
     @Column({ type: "uuid", nullable: false })
     order_uuid: string;
 
+    @Column({ type: "uuid", nullable: false })
+    product_uuid: string;
+
     @Column({
         type: "varchar",
         nullable: false,

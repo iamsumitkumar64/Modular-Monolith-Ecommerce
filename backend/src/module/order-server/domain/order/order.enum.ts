@@ -1,11 +1,14 @@
 export enum OrderPaymentStatusEnum {
     PENDING = 'pending',
     PAID = 'paid',
-    CANCELLED = 'cancelled'
+    CANCELLED = 'cancelled',
+    REFUND = 'refund'
 }
 
 export enum OrderStatusEnum {
     PENDING = 'pending',
-    COMPLETED = 'completed',
-    DELIVERED='delivered'
+    PROCESSING = 'processing',
+    PACKED = 'packed',
+    DELIVERED = 'delivered',
+    RETURNED = 'returned'
 }

@@ -15,11 +15,13 @@
 .header {
     width: 100%;
     padding-bottom: .5%;
+    padding-top: 1%;
     border-bottom: 1px solid black;
     margin-bottom: 1%;
 }
 
 .heading {
+    font-weight: 900;
     color: #111827;
 }
 
@@ -55,6 +57,21 @@
     border: 1px solid #b1b1b1;
     border-radius: 8px;
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+    position: relative;
+}
+
+.orderLabel {
+    position: absolute;
+    top: 0;
+    left: 0;
+    padding: 0.25rem 0.5rem;
+    font-size: 2rem;
+    font-weight: bold;
+    color: white;
+    /* border-top-left-radius: 16px; */
+    border-bottom-right-radius: 16px;
+    text-transform: uppercase;
+    background-color: #00649d;
 }
 
 .stepper {

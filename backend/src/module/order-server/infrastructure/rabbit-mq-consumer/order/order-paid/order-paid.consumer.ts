@@ -4,6 +4,7 @@ import { ExchangeNameEnum, ExchangeTypeEnum, QueueEnum, RoutingKeyEnum } from 's
 import { InboxRepository } from '../../../repository/inbox.repo';
 import { OrderRepository } from '../../../repository/order.repo';
 import { OrderPaymentStatusEnum, } from 'src/module/order-server/domain/order/order.enum';
+import { OutboxRepository } from '../../../repository/outbox.repo';
 
 @Injectable()
 export class OrderPaidConsumer implements OnModuleInit {
@@ -13,6 +14,7 @@ export class OrderPaidConsumer implements OnModuleInit {
         private readonly rabbitMQService: RabbitMQService,
         private readonly inboxRepo: InboxRepository,
         private readonly orderRepo: OrderRepository,
+        private readonly outboxRepo: OutboxRepository,
     ) { }
 
     async onModuleInit() {
@@ -29,7 +31,22 @@ export class OrderPaidConsumer implements OnModuleInit {
                     return;
                 }
 
+                const isOrderExists = await this.orderRepo.findByUuid(payload.order_uuid);
+                if (!isOrderExists) {
+                    this.logger.warn(`Order not found so skipped: ${payload.order_uuid}`);
+                    return;
+                }
+console.log('sumit',JSON.stringify(isOrderExists));
                 await this.orderRepo.updateOrderPaymentStatus(payload.order_uuid, OrderPaymentStatusEnum.PAID)
+
+                await this.outboxRepo.createOutboxntry({
+                    exchange_name: ExchangeNameEnum.ORDER_EXCHANGE,
+                    routing_key: RoutingKeyEnum.ORDER_PAID_DEDUCT_STOCK,
+                    message_payload: {
+                        order_uuid: payload.order_uuid,
+                        order: isOrderExists
+                    }
+                });
 
                 await this.inboxRepo.createEntry({ outbox_uuid });
             },

@@ -6,7 +6,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { Box, Button, Card, CardContent, CircularProgress, Container, Typography } from "@mui/material";
 import { RootState, AppDispatch } from "@/redux/store";
 import styles from "./order.module.css";
-import { getOrders } from "@/redux/feature/order/order-action";
+import { returnOrder, getOrders } from "@/redux/feature/order/order-action";
 import { Order } from "@/redux/feature/order/order-type";
 import { enqueueSnackbar } from "notistack";
 import Image from "next/image";
@@ -27,20 +27,33 @@ export default function OrderPage() {
     const [payModalOrder, setPayModalOrder] = useState<string | null>(null);
 
     useEffect(() => {
-        fetchOrders();
+        if (!orders?.length) {
+            fetchOrders();
+        }
     }, []);
 
     const fetchOrders = async () => {
         try {
-            const result = await dispatch(getOrders({ limit, offset }));
-            const fetchedOrders = (result.payload as any)?.data || [];
-            setOffset(offset + limit);
+            const result = await dispatch(getOrders({ limit, offset })).unwrap();
+            const fetchedOrders = (result.data as any)?.data || [];
+            setOffset(prevOffset => prevOffset + limit);
             if (fetchedOrders.length < limit) setHasMore(false);
         } catch (err: any) {
             console.log(err);
             enqueueSnackbar(err, { variant: "warning", });
         }
     };
+
+    const handleReturnOrder = async (order_uuid: string) => {
+        try {
+            const result = await dispatch(returnOrder({ order_uuid })).unwrap();
+            enqueueSnackbar(result.message, { variant: "success", });
+        } catch (err: any) {
+            console.log(err);
+            enqueueSnackbar(err, { variant: "warning", });
+        }
+    };
+
 
     const orderSteps = [
         OrderStatusEnum.PENDING,
@@ -75,10 +88,10 @@ export default function OrderPage() {
                     scrollableTarget="scrollableDiv"
                 >
                     {orders && orders.length > 0 ? (
-                        orders.map((order: Order) => (
+                        orders.map((order: Order, idx: number) => (
                             <Card key={order.uuid} className={styles.orderCard}>
 
-                                <Stepper activeStep={getActiveStep(order.order_status as OrderStatusEnum)} alternativeLabel className={styles.stepper}>
+                                <Stepper activeStep={(getActiveStep(order.order_status as OrderStatusEnum) === orderSteps.length + 1) ? orderSteps.length + 2 : getActiveStep(order.order_status as OrderStatusEnum)} alternativeLabel className={styles.stepper}>
                                     {orderSteps.map((step) => (
                                         <Step key={step}>
                                             <StepLabel
@@ -95,7 +108,12 @@ export default function OrderPage() {
                                     ))}
                                 </Stepper>
 
+                                <Box className={styles.orderLabel}>
+                                    # {idx}
+                                </Box>
+
                                 <CardContent>
+
                                     <Typography variant="h6">
                                         Order ID: {order.uuid}
                                     </Typography>
@@ -112,6 +130,16 @@ export default function OrderPage() {
                                                 onClick={() => setPayModalOrder(order.uuid)}
                                             >
                                                 Pay {order.total_price}
+                                            </Button>
+                                        }
+
+                                        {
+                                            order.payment_status === OrderPaymentStatusEnum.PAID &&
+                                            order.order_status !== OrderStatusEnum.RETURNED &&
+                                            <Button
+                                                onClick={() => handleReturnOrder(order.uuid)}
+                                            >
+                                                Return Order and Get Refund {order.total_price}
                                             </Button>
                                         }
 

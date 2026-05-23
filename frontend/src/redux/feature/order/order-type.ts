@@ -35,11 +35,16 @@ export interface OrderResponse {
     message: string;
 }
 
+export interface returnOrderResponse {
+    message: string;
+}
+
 export interface CreateOrderPayload {
     cart_uuid: string;
     total_price: number;
     order_address: string;
     items: {
+        product_uuid: string;
         name: string;
         description: string;
         price: number;

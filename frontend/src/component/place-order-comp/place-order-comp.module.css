@@ -1,0 +1,102 @@
+.contentBox {
+    width: 100%;
+    padding-top: 2%;
+    display: flex;
+    flex-direction: column;
+    gap: 2%;
+}
+
+.noAddressText {
+    margin-bottom: 2%;
+}
+
+.selectAddressText {
+    margin-bottom: 2%;
+    font-weight: 600;
+}
+
+.addressRadioGroup,
+.addressBox {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    padding: 3%;
+    margin-bottom: 2%;
+    width: 100%;
+    border-radius: 16px;
+    border: 1px solid rgb(154, 154, 154);
+}
+
+.addressesLabel {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+}
+
+.labelBox {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.labelBoxRightBox {
+    width: 10%;
+}
+
+.labelBoxLeftBox {
+    width: 80%;
+    overflow: hidden;
+}
+
+.labelBoxRightBox,
+.labelBoxLeftBox {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+}
+
+.defaultAddress {
+    border: 0.2% solid #0061c9;
+}
+
+.addressLine {
+    font-weight: 500;
+}
+
+.addressDetails {
+    display: block;
+}
+
+.defaultLabel {
+    margin-left: 1%;
+    color: #1976d2;
+    font-weight: 600;
+}
+
+.divider {
+    margin-top: 2%;
+    margin-bottom: 2%;
+}
+
+.addButton {
+    margin-top: 1%;
+}
+
+.dialogActions {
+    display: flex;
+    align-items: stretch;
+    gap: 10px;
+}
+
+.deleteAddress,
+.cancelBtn {
+    color: rgb(231, 0, 0);
+}
+
+.deleteAddress:hover,
+.cancelBtn:hover {
+    background-color: rgb(194, 0, 0);
+}

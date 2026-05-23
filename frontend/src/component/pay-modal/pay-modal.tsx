@@ -3,7 +3,7 @@
 import { Box, Button, Card, CardContent, Typography, Radio, RadioGroup, FormControlLabel } from "@mui/material";
 import { useEffect, useState } from "react";
 import { RootState } from "@/redux/store";
-import { deleteCard, getCards, pay } from "@/redux/feature/payment/payment.action";
+import { deleteCard, getAccount, getCards, getHistories, pay } from "@/redux/feature/payment/payment.action";
 import { enqueueSnackbar } from "notistack";
 import { useAppDispatch, useAppSelector } from "@/redux/hooks.ts";
 import AddCardModal from "../add-card-modal/AddCardModal";
@@ -29,6 +29,8 @@ export default function PayModal({ open, onClose, amount, order_uuid }: PayModal
     useEffect(() => {
         if (open) {
             dispatch(getCards());
+            dispatch(getAccount());
+            dispatch(getHistories());
         }
     }, [open, dispatch]);
 

@@ -28,4 +28,33 @@ export class ProductRepository extends Repository<ProductEntity> {
 
         return { data, total };
     }
+
+    async findByUuid(uuid: string) {
+        const product = await this.findOne({
+            where: {
+                uuid: uuid
+            }
+        });
+        return product;
+    }
+
+    async deductStock(productUuid: string, quantity: number): Promise<void> {
+        const product = await this.findByUuid(productUuid);
+        if (!product) {
+            throw new Error(`Product not found: ${productUuid}`);
+        }
+
+        product.stock -= quantity;
+        await this.save(product);
+    }
+
+    async increaseStock(productUuid: string, quantity: number): Promise<void> {
+        const product = await this.findByUuid(productUuid);
+        if (!product) {
+            throw new Error(`Product not found: ${productUuid}`);
+        }
+
+        product.stock += quantity;
+        await this.save(product);
+    }
 }

@@ -54,6 +54,7 @@ export class OrderCreatedConsumer implements OnModuleInit {
                         this.orderItemRepo.createOrderItem({
                             uuid: item.uuid,
                             order_uuid: order.uuid,
+                            product_uuid: item.product_uuid,
                             name: item.name,
                             description: item.description,
                             image_url: item.image_url,

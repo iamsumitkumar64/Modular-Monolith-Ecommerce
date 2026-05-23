@@ -38,7 +38,7 @@ export default function AddAmountModal({ open, onClose }: Props) {
 
     return (
         <Modal open={open} onClose={onClose}>
-            <Box sx={{ width: 400, bgcolor: "white", p: 4, mx: "auto", mt: 10, borderRadius: 2 }}>
+            <Box sx={{ width: 400, bgcolor: "white", p: 4, mx: "auto", mt: 35, borderRadius: 2 }}>
                 <Typography variant="h6" mb={2}>Add Amount</Typography>
                 <form onSubmit={handleSubmit(onSubmit)}>
                     <TextField

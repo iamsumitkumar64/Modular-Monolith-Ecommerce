@@ -1,5 +1,5 @@
 import { Module } from "@nestjs/common";
-import { ProductRepository } from "src/module/cart-server/infrastructure/repository/product.repository";
+import { ProductRepository } from "src/module/cart-server/infrastructure/repository/product.repo";
 import { ItemAddToCartController } from "./item-add-to-cart.controller";
 import { ItemAddToCartService } from "./item-add-to-cart.service";
 import { CartRepository } from "src/module/cart-server/infrastructure/repository/cart.repo";

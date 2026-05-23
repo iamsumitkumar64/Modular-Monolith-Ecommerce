@@ -10,6 +10,7 @@ export class orderItemMigration1778505600002 implements MigrationInterface {
                 { name: "uuid", type: "uuid", isPrimary: true, generationStrategy: "uuid", default: "uuid_generate_v4()" },
                 { name: "id", type: "bigint", isGenerated: true, generationStrategy: "increment", isUnique: true, isNullable: false },
                 { name: "order_uuid", type: "uuid", isNullable: false },
+                { name: "product_uuid", type: "uuid", isNullable: false },
                 { name: "name", type: "varchar", isNullable: false },
                 { name: "description", type: "text", isNullable: true },
                 { name: "image_url", type: "varchar", isNullable: true },

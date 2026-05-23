@@ -55,7 +55,17 @@ const orderSlice = createSlice({
             .addCase(getOrders.fulfilled, (state, action) => {
                 state.loading = false;
                 state.status = "succeed";
-                state.orders = action.payload.data as any[];
+
+                const newOrders = action.payload.data as any[];
+
+                if (state.orders) {
+                    const uuids = new Set(state.orders.map(o => o.uuid));
+                    const filteredNewOrders = newOrders.filter(o => !uuids.has(o.uuid));
+                    state.orders = [...state.orders, ...filteredNewOrders];
+                } else {
+                    state.orders = newOrders;
+                }
+
                 state.error = null;
             })
             .addCase(getOrders.rejected, (state, action) => {
@@ -70,7 +80,7 @@ const orderSlice = createSlice({
             .addCase(createOrder.fulfilled, (state, action) => {
                 state.loading = false;
                 state.status = "succeed";
-                if (state.orders) state.orders.push(action.payload.data as any);
+                if (state.orders) state.orders.unshift(action.payload.data as any);
                 else state.orders = [action.payload.data as any];
                 state.error = null;
             })

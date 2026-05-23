@@ -3,6 +3,7 @@
 import { useState } from "react";
 import { Box, Button, Dialog, DialogTitle, DialogContent, DialogActions, Typography, RadioGroup, FormControlLabel, Radio, Divider } from "@mui/material";
 import AddIcon from "@mui/icons-material/Add";
+import DeleteIcon from '@mui/icons-material/Delete';
 import { enqueueSnackbar } from "notistack";
 import { Address } from "@/redux/feature/address/address.type";
 import { Cart } from "@/redux/feature/cart/cart.type";
@@ -10,6 +11,8 @@ import { createOrder } from "@/redux/feature/order/order-action";
 import { useRouter } from "next/navigation";
 import { useAppDispatch } from "@/redux/hooks.ts";
 import { concatenateAddress } from "@/app/util/format-address";
+import { deleteAddress } from "@/redux/feature/address/address.action";
+import styles from './place-order-comp.module.css';
 
 interface PlaceOrderDialogProps {
     open: boolean;
@@ -62,6 +65,7 @@ export default function PlaceOrderDialog({
                 total_price: Number(cart.total_price),
                 order_address: concatenated,
                 items: cart.items.map(item => ({
+                    product_uuid: item.product_uuid,
                     name: item.product?.name || "",
                     description: item.product?.description || "",
                     image_url: item.product?.image_url || "",
@@ -89,14 +93,18 @@ export default function PlaceOrderDialog({
         onClose();
     };
 
+    const handleDelete = async (uuid: string) => {
+        await dispatch(deleteAddress({ uuid }));
+    };
+
     return (
         <Dialog open={open} onClose={handleClose} maxWidth="sm" fullWidth>
             <DialogTitle>Choose Delivery Address</DialogTitle>
             <DialogContent>
-                <Box sx={{ pt: 2 }}>
+                <Box className={styles.contentBox}>
                     {!addresses || addresses.length === 0 ? (
                         <Box>
-                            <Typography color="textSecondary" sx={{ mb: 2 }}>
+                            <Typography color="textSecondary" className={styles.noAddressText}>
                                 No addresses found. Create one to place an order.
                             </Typography>
                             <Button
@@ -113,60 +121,75 @@ export default function PlaceOrderDialog({
                         </Box>
                     ) : (
                         <Box>
-                            <Typography variant="subtitle2" sx={{ mb: 2, fontWeight: 600 }}>
+                            <Typography variant="subtitle2" className={styles.selectAddressText}>
                                 Select an address:
                             </Typography>
                             <RadioGroup
                                 value={selectedAddressUuid}
+                                className={styles.addressRadioGroup}
                                 onChange={(e) => setSelectedAddressUuid(e.target.value)}
                             >
-                                {addresses.map((address) => (
-                                    <Box key={address.uuid} sx={{ mb: 2, p: 1.5, border: '1px solid #e0e0e0', borderRadius: 1 }}>
+                                {addresses.map((address: Address) => (
+                                    <Box
+                                        key={address.uuid}
+                                        className={styles.addressBox}
+                                    >
                                         <FormControlLabel
                                             value={address.uuid}
                                             control={<Radio />}
+                                            className={styles.addressesLabel}
                                             label={
-                                                <Box>
-                                                    <Typography variant="body2" sx={{ fontWeight: 500 }}>
-                                                        {address.street}, {address.city}
-                                                    </Typography>
-                                                    <Typography variant="caption" color="textSecondary">
-                                                        {address.state}, {address.postalCode}, {address.country}
-                                                    </Typography>
-                                                    {address.isDefault && (
-                                                        <Typography variant="caption" sx={{ ml: 1, color: '#1976d2', fontWeight: 600 }}>
-                                                            (Default)
+                                                <Box className={styles.labelBox}>
+                                                    <Box className={styles.labelBoxLeftBox}>
+                                                        <Typography variant="body2" className={styles.addressLine}>
+                                                            {address.street}, {address.city}
                                                         </Typography>
-                                                    )}
+                                                        <Typography variant="caption" color="textSecondary" className={styles.addressDetails}>
+                                                            {address.state}, {address.postalCode}, {address.country}
+                                                        </Typography>
+                                                        {address.isDefault && (
+                                                            <Typography variant="caption" className={styles.defaultLabel}>
+                                                                (Default)
+                                                            </Typography>
+                                                        )}
+                                                    </Box>
+
+                                                    <Box className={styles.labelBoxRightBox}>
+                                                        <Button
+                                                            className={styles.deleteAddress}
+                                                            onClick={() => handleDelete(address.uuid)}
+                                                        >
+                                                            <DeleteIcon />
+                                                        </Button>
+                                                    </Box>
                                                 </Box>
                                             }
                                         />
                                     </Box>
                                 ))}
                             </RadioGroup>
-
-                            <Divider sx={{ my: 2 }} />
-
-                            <Button
-                                fullWidth
-                                variant="outlined"
-                                startIcon={<AddIcon />}
-                                onClick={() => {
-                                    handleClose();
-                                    onAddAddressClick();
-                                }}
-                                sx={{ mt: 1 }}
-                            >
-                                Add New Address
-                            </Button>
                         </Box>
                     )}
                 </Box>
             </DialogContent>
-            <DialogActions>
-                <Button onClick={handleClose} disabled={loading}>
+            <DialogActions className={styles.dialogActions}>
+                <Button
+                    fullWidth
+                    variant="outlined"
+                    startIcon={<AddIcon />}
+                    onClick={() => {
+                        handleClose();
+                        onAddAddressClick();
+                    }}
+                    className={styles.addButton}
+                >
+                    Add New Address
+                </Button>
+
+                <Button onClick={handleClose} disabled={loading} className={styles.cancelBtn}>
                     Cancel
                 </Button>
+
                 <Button
                     onClick={handlePlaceOrder}
                     variant="contained"

@@ -19,6 +19,33 @@ export class OrderRepository extends Repository<OrderEntity> {
         return await this.save(user);
     }
 
+    async findByUuid(uuid: string) {
+        const user = await this.findOne({
+            where: {
+                uuid: uuid
+            },
+            relations: {
+                items: true,
+                user: true,
+            }
+        });
+        return user;
+    }
+
+    async findByUserUuidAndOrderUuid(user_uuid: string, order_uuid: string) {
+        const user = await this.findOne({
+            where: {
+                uuid: order_uuid,
+                user_uuid: user_uuid
+            },
+            relations: {
+                items: true,
+                user: true,
+            }
+        });
+        return user;
+    }
+
     async getOrderListing(user: UserEntity, offset?: number, limit?: number) {
         const [data, total] = await this.findAndCount({
             where: { user_uuid: user.uuid },

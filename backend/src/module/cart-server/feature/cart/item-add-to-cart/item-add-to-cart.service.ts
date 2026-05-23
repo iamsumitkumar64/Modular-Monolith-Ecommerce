@@ -3,7 +3,7 @@ import { UserEntity } from "src/module/cart-server/domain/user/user.entity";
 import { ItemAddToCartDto } from "./item-add-to-cart.dto";
 import { CartRepository } from "src/module/cart-server/infrastructure/repository/cart.repo";
 import { CartItemRepository } from "src/module/cart-server/infrastructure/repository/cart.item.repo";
-import { ProductRepository } from "src/module/cart-server/infrastructure/repository/product.repository";
+import { ProductRepository } from "src/module/cart-server/infrastructure/repository/product.repo";
 
 @Injectable()
 export class ItemAddToCartService {
@@ -21,6 +21,9 @@ export class ItemAddToCartService {
         if (!product) {
             throw new BadRequestException("Product not found");
         }
+        if (quantity > product.stock) {
+            throw new BadRequestException("Quantity is Greater than Stock of product");
+        }
 
         // find/create cart
         let cart = await this.cartRepo.findByUserUuid(user.uuid);
@@ -35,6 +38,9 @@ export class ItemAddToCartService {
         if (existingCartItem) {
             // update only quantity if already exists
             const updatedQuantity = existingCartItem.quantity + quantity;
+            if (updatedQuantity > product.stock) {
+                throw new BadRequestException("Quantity is Greater than Stock of product");
+            }
             cartItem = await this.cartItemRepo.updateQuantity(existingCartItem.uuid, updatedQuantity,);
         } else {
             // create new cart item

@@ -2,7 +2,7 @@
 
 import { createSlice } from "@reduxjs/toolkit";
 import { AddressState } from "./address.type";
-import { getAddresses, addAddress, deleteAddress, updateAddress } from "./address.action";
+import { getAddresses, addAddress, deleteAddress } from "./address.action";
 
 const initialState: AddressState = {
     addresses: null,
@@ -74,25 +74,6 @@ const addressSlice = createSlice({
                 state.status = "rejected";
                 state.error = action.payload as string;
             })
-            .addCase(updateAddress.pending, (state) => {
-                state.loading = true;
-                state.status = "pending";
-            })
-            .addCase(updateAddress.fulfilled, (state, action) => {
-                state.loading = false;
-                state.status = "succeed";
-                const updatedAddress = action.payload.data as any;
-                if (state.addresses) {
-                    const idx = state.addresses.findIndex(addr => addr.uuid === updatedAddress.uuid);
-                    if (idx !== -1) state.addresses[idx] = updatedAddress;
-                }
-                state.error = null;
-            })
-            .addCase(updateAddress.rejected, (state, action) => {
-                state.loading = false;
-                state.status = "rejected";
-                state.error = action.payload as string;
-            });
     },
 });
 

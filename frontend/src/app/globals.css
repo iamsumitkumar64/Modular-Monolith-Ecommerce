@@ -1,7 +1,7 @@
 @import "tailwindcss";
 
 * {
-  scrollbar-width: none;
+  /* scrollbar-width: none; */
   scroll-behavior: smooth;
   transition: all ease .5s;
 }
@@ -35,6 +35,10 @@ p {
   right: 0;
   bottom: 0;
   width: 9%;
+}
+
+.birdAnimation:hover {
+  width: 18%;
 }
 
 button,

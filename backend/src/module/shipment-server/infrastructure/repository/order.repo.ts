@@ -57,11 +57,25 @@ export class OrderRepository extends Repository<OrderEntity> {
         )
     }
 
+    async findByUserUuidAndOrderUuid(user_uuid: string, order_uuid: string) {
+        const user = await this.findOne({
+            where: {
+                uuid: order_uuid,
+                user_uuid: user_uuid
+            },
+            relations: {
+                items: true,
+                user: true,
+            }
+        });
+        return user;
+    }
+
     async findTopTenPaidButNotDeliveredOrderStatus() {
         return await this.find({
             where: {
                 payment_status: OrderPaymentStatusEnum.PAID,
-                order_status: Not(OrderStatusEnum.DELIVERED)
+                order_status: Not(OrderStatusEnum.RETURNED)
             },
             order: {
                 created_at: 'ASC'

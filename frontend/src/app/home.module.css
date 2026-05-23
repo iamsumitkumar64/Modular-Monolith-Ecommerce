@@ -15,11 +15,13 @@
 .header {
   width: 100%;
   padding-bottom: .5%;
+  padding-top: 1%;
   border-bottom: 1px solid black;
   margin-bottom: 1%;
 }
 
 .heading {
+  font-weight: 900;
   color: #111827;
 }
 
@@ -34,12 +36,16 @@
   padding-right: 1%;
 }
 
+
 .productWrapper {
   width: 100%;
   display: flex;
   flex-wrap: wrap;
   gap: 2%;
   align-items: stretch;
+  overflow: auto;
+  padding-top: 1%;
+  padding-bottom: 5%;
 }
 
 .card {
@@ -51,10 +57,13 @@
   flex-direction: column;
   background: white;
   transition: transform 0.2s;
+  position: relative;
+  border: 1px solid #b1b1b1;
 }
 
 .card:hover {
-  transform: scale(1.02);
+  transform: translateY(-1%);
+  box-shadow: 0 0 0 8px rgba(0, 0, 0, 0.05);
 }
 
 .imageWrapper {

@@ -1,5 +1,5 @@
 import { Column, CreateDateColumn, DeleteDateColumn, Entity, JoinColumn, ManyToOne, PrimaryGeneratedColumn, UpdateDateColumn } from "typeorm";
-import { PaymentHistoryTypeEnum } from "./payment.type.enum";
+import { PaymentHistoryTypeEnum } from "./payment.enum";
 import { UserEntity } from "../user/user.entity";
 import { PaymentCardEntity } from "../payment-card/payment-card.entity";
 
@@ -18,6 +18,9 @@ export class PaymentHistoryEntity {
 
     @Column({ type: "uuid", nullable: false })
     user_uuid: string;
+
+    @Column({ type: "uuid", nullable: true })
+    order_uuid: string;
 
     @Column({ type: "uuid", nullable: false })
     card_uuid: string | null;

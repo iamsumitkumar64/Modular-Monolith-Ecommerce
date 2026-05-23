@@ -43,7 +43,7 @@ export default function AddCardModal({ open, onClose }: Props) {
 
     return (
         <Modal open={open} onClose={onClose}>
-            <Box sx={{ width: 400, bgcolor: "white", p: 4, mx: "auto", mt: 10, borderRadius: 2 }}>
+            <Box sx={{ width: 400, bgcolor: "white", p: 4, mx: "auto", mt: 20, borderRadius: 2 }}>
                 <Typography variant="h6" mb={2}>Add Card</Typography>
                 <form onSubmit={handleSubmit(onSubmit)}>
                     <TextField
