@@ -83,8 +83,10 @@ export default function PaymentHistoryPage() {
                     <Card key={item.uuid} className={styles.historyCard}>
                         <Box
                             className={`${styles.historyLabel} ${item.type === PaymentHistoryTypeEnum.TOPUP
-                                ? styles.topup
-                                : styles.payment
+                                    ? styles.topup
+                                    : item.type === PaymentHistoryTypeEnum.REFUND
+                                        ? styles.refund
+                                        : styles.payment
                                 }`}
                         >
                             {item.type?.toUpperCase()}
