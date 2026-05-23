@@ -83,4 +83,15 @@ export class OrderRepository extends Repository<OrderEntity> {
             }
         )
     }
+
+    async updateReturnedFromStatus(uuid: string, status: OrderStatusEnum) {
+        return await this.update(
+            {
+                uuid: uuid
+            },
+            {
+                returned_from_status: status
+            }
+        )
+    }
 }

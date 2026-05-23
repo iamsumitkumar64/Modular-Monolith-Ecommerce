@@ -31,6 +31,9 @@ export class OrderEntity {
     @Column({ type: "enum", enum: OrderStatusEnum, default: OrderStatusEnum.PENDING, nullable: false })
     order_status: OrderStatusEnum;
 
+    @Column({ type: "enum", enum: OrderStatusEnum, nullable: true })
+    returned_from_status: OrderStatusEnum | null;
+
     @Column({ type: "varchar", length: 255, nullable: true })
     order_address: string;
 

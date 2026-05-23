@@ -17,6 +17,7 @@ export class orderMigration1778505600002 implements MigrationInterface {
                 { name: "total_price", type: "decimal", precision: 12, scale: 2, default: 0, isNullable: false },
                 { name: "payment_status", type: `"shipment_schema"."payment_status_type_enum"`, default: `'pending'` },
                 { name: "order_status", type: `"shipment_schema"."order_status_type_enum"`, default: `'pending'` },
+                { name: "returned_from_status", type: `"shipment_schema"."order_status_type_enum"`, isNullable: true },
                 { name: "order_address", type: "varchar", length: "255", isNullable: true, },
                 { name: "created_at", type: "timestamp", default: "now()" },
                 { name: "updated_at", type: "timestamp", default: "now()" },

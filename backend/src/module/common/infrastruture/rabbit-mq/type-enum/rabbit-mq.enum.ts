@@ -40,10 +40,11 @@ export enum QueueEnum {
     PRODUCT_ORDER_PAID_DEDUCT_STOCK_QUEUE = 'product.order.paid.deduct.stock.queue',
     CART_ORDER_PAID_DEDUCT_STOCK_QUEUE = 'cart.order.paid.deduct.stock.queue',
     ORDER_STATUS_CHANGED_QUEUE = 'order.status.changed.queue',
+    ORDER_RETURNED_QUEUE = 'order.returned.queue',
     PRODUCT_ORDER_RETURNED_QUEUE = 'product.order.returned.queue',
     CART_ORDER_RETURNED_QUEUE = 'cart.order.returned.queue',
     SHIPMENT_ORDER_RETURNED_QUEUE = 'shipment.order.returned.queue',
-    FINANCE_ORDER_RETURNED_QUEUE = 'shipment.order.returned.queue',
+    FINANCE_ORDER_RETURNED_QUEUE = 'finance.order.returned.queue',
 }
 
 export enum RetryMechanismHeaderEnum {

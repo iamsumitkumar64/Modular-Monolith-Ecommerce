@@ -35,7 +35,7 @@ export default function OrderPage() {
     const fetchOrders = async () => {
         try {
             const result = await dispatch(getOrders({ limit, offset })).unwrap();
-            const fetchedOrders = (result.data as any)?.data || [];
+            const fetchedOrders = Array.isArray(result.data) ? result.data : [];
             setOffset(prevOffset => prevOffset + limit);
             if (fetchedOrders.length < limit) setHasMore(false);
         } catch (err: any) {
@@ -91,10 +91,11 @@ export default function OrderPage() {
                         orders.map((order: Order, idx: number) => (
                             <Card key={order.uuid} className={styles.orderCard}>
 
-                                <Stepper activeStep={(getActiveStep(order.order_status as OrderStatusEnum) === orderSteps.length + 1) ? orderSteps.length + 2 : getActiveStep(order.order_status as OrderStatusEnum)} alternativeLabel className={styles.stepper}>
+                                <Stepper activeStep={getActiveStep((order.returned_from_status || order.order_status) as OrderStatusEnum)} alternativeLabel className={styles.stepper}>
                                     {orderSteps.map((step) => (
                                         <Step key={step}>
                                             <StepLabel
+                                                error={order.payment_status === OrderPaymentStatusEnum.REFUND && order.returned_from_status === step}
                                                 sx={{
                                                     "& .MuiStepLabel-label": {
                                                         textTransform: "capitalize",
@@ -125,6 +126,8 @@ export default function OrderPage() {
                                     <Box>
                                         {
                                             order.payment_status !== OrderPaymentStatusEnum.PAID &&
+                                            order.payment_status !== OrderPaymentStatusEnum.REFUND &&
+                                            order.order_status !== OrderStatusEnum.RETURNED &&
                                             <Button
                                                 color="primary"
                                                 onClick={() => setPayModalOrder(order.uuid)}

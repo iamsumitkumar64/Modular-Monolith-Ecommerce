@@ -29,6 +29,7 @@ import { PaymentOrderModule } from './module/finance-server/feature/order/order.
 import * as FinanceCronModule from './module/finance-server/infrastructure/cron/cron.module';
 import * as ShipmentCronModule from './module/shipment-server/infrastructure/cron/cron.module';
 import { SocketModule } from './module/common/socket/socket.module';
+import { ShipmentOrderModule } from './module/shipment-server/feature/order/order.module';
 
 @Module({
   imports: [
@@ -104,6 +105,7 @@ import { SocketModule } from './module/common/socket/socket.module';
       retryDelay: 5000
     }),
     UserAddressModule,
+    ShipmentOrderModule,
     ShipmentCronModule.CronModule,
   ],
   controllers: [AppController],

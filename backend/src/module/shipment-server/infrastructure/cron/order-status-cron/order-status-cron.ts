@@ -56,10 +56,15 @@ export class PaidOrderStatusCronService {
             }
 
             if (nextStatus) {
-                await this.orderRepo.updateOrderStatus(
+                const updateResult = await this.orderRepo.updateOrderStatusIfNotReturned(
                     order.uuid,
                     nextStatus,
                 );
+
+                if (!updateResult.affected) {
+                    this.logger.log(`Order ${order.uuid} was returned before cron update`);
+                    continue;
+                }
 
                 const payload = {
                     order_uuid: order.uuid,

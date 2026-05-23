@@ -2,8 +2,8 @@
 
 import { createSlice } from "@reduxjs/toolkit";
 import { OrderState } from "./order-type";
-import { getOrders, createOrder } from "./order-action";
-import { OrderPaymentStatusEnum } from "@/enum/order.enum";
+import { getOrders, createOrder, returnOrder } from "./order-action";
+import { OrderPaymentStatusEnum, OrderStatusEnum } from "@/enum/order.enum";
 
 const initialState: OrderState = {
     orders: null,
@@ -88,6 +88,14 @@ const orderSlice = createSlice({
                 state.loading = false;
                 state.status = "rejected";
                 state.error = action.payload as string;
+            })
+            .addCase(returnOrder.fulfilled, (state, action) => {
+                const orderIndex = state.orders?.findIndex(o => o.uuid === action.meta.arg.order_uuid);
+                if (orderIndex !== undefined && orderIndex !== -1 && state.orders) {
+                    state.orders[orderIndex].returned_from_status = state.orders[orderIndex].order_status;
+                    state.orders[orderIndex].order_status = OrderStatusEnum.RETURNED;
+                    state.orders[orderIndex].payment_status = OrderPaymentStatusEnum.REFUND;
+                }
             });
     },
 });
