@@ -1,5 +1,6 @@
 import { BadRequestException, Injectable, } from "@nestjs/common";
 import { ExchangeNameEnum, RoutingKeyEnum } from "src/module/common/infrastruture/rabbit-mq/type-enum/rabbit-mq.enum";
+import { OrderPaidEventPayload } from "src/module/common/infrastruture/rabbit-mq/type-enum/rabbit-mq.type";
 import { OrderPaymentStatusEnum } from "src/module/order-module/domain/order/order.enum";
 import { OrderRepository } from "src/module/order-module/infrastructure/repository/order.repository";
 import { OutboxRepository } from "src/module/order-module/infrastructure/repository/outbox.repository";
@@ -11,7 +12,7 @@ export class OrderPaidService {
         private readonly outboxRepository: OutboxRepository,
     ) { }
 
-    async orderPaid(payload: any) {
+    async orderPaid(payload: OrderPaidEventPayload) {
 
         const isOrderExists = await this.orderRepository.findByUuid(payload.order_uuid);
         if (!isOrderExists) {

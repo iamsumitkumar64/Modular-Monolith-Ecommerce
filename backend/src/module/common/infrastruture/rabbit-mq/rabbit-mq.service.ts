@@ -249,9 +249,9 @@ export class RabbitMQService implements OnModuleInit, OnModuleDestroy {
     }
 
     // consume messages
-    async consumeMessages(
+    async consumeMessages<TPayload = unknown>(
         queue: string,
-        callback: (data: any) => Promise<void>,
+        callback: (data: TPayload) => Promise<void>,
     ) {
         try {
             while (!this.channel) {
@@ -333,7 +333,7 @@ export class RabbitMQService implements OnModuleInit, OnModuleDestroy {
     async publishToExchange(
         exchange: string,
         routingKey: string,
-        message: any,
+        message: unknown,
         // type: ExchangeType = ExchangeTypeEnum.DIRECT,
         headers?: PublishHeadersInterface
     ) {

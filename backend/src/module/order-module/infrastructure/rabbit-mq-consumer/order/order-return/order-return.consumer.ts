@@ -1,6 +1,7 @@
 import { Injectable, Logger, OnModuleInit } from '@nestjs/common';
 import { RabbitMQService } from 'src/module/common/infrastruture/rabbit-mq/rabbit-mq.service';
 import { QueueEnum } from 'src/module/common/infrastruture/rabbit-mq/type-enum/rabbit-mq.enum';
+import { OrderWithDetailsEventPayload, RabbitMQConsumerMessage } from 'src/module/common/infrastruture/rabbit-mq/type-enum/rabbit-mq.type';
 import { InboxRepository } from '../../../repository/inbox.repository';
 import { OrderReturnService } from 'src/module/order-module/feature/order/order-return/order.return.service';
 
@@ -15,7 +16,7 @@ export class OrderOrderReturnConsumer implements OnModuleInit {
     ) { }
 
     async onModuleInit() {
-        await this.rabbitMQService.consumeMessages(
+        await this.rabbitMQService.consumeMessages<RabbitMQConsumerMessage<OrderWithDetailsEventPayload>>(
             QueueEnum.ORDER_RETURNED_QUEUE,
             async (data) => {
                 const { outbox_uuid, payload } = data;

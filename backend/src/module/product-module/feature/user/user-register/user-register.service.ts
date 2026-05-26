@@ -1,4 +1,5 @@
 import { BadRequestException, Injectable, } from "@nestjs/common";
+import { UserRegisteredEventPayload } from "src/module/common/infrastruture/rabbit-mq/type-enum/rabbit-mq.type";
 import { UserRepository } from "src/module/product-module/infrastructure/repository/user.repository";
 
 @Injectable()
@@ -7,7 +8,7 @@ export class UserRegisterService {
         private readonly repository: UserRepository,
     ) { }
 
-    async userRegister(payload: any) {
+    async userRegister(payload: UserRegisteredEventPayload) {
         const isUserExists = await this.repository.findByEmail(payload.email);
         if (isUserExists.length) {
             console.warn(`Duplicate skipped: ${isUserExists[0].email}`);

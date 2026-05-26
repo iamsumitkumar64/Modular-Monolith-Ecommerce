@@ -1,4 +1,5 @@
 import { BadRequestException, Injectable } from "@nestjs/common";
+import { OrderEventPayload } from "src/module/common/infrastruture/rabbit-mq/type-enum/rabbit-mq.type";
 import { SocketService } from "src/module/common/infrastruture/socket/socket.service";
 import { PaymentHistoryTypeEnum } from "src/module/finance-module/domain/payment-history/payment.enum";
 import { FinanceRepository } from "src/module/finance-module/infrastructure/repository/finance.repository";
@@ -10,7 +11,7 @@ export class OrderReturnService {
         private readonly financeRepository: FinanceRepository,
     ) { }
 
-    async orderReturn(order: any) {
+    async orderReturn(order: OrderEventPayload) {
 
         // make payment returned 
         let account = await this.financeRepository.findAccount(order.user.uuid);

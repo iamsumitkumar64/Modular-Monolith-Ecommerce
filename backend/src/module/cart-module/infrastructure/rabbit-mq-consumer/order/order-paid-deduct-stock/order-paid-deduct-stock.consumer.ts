@@ -1,6 +1,7 @@
 import { Injectable, Logger, OnModuleInit } from '@nestjs/common';
 import { RabbitMQService } from 'src/module/common/infrastruture/rabbit-mq/rabbit-mq.service';
 import { ExchangeNameEnum, ExchangeTypeEnum, QueueEnum, RoutingKeyEnum } from 'src/module/common/infrastruture/rabbit-mq/type-enum/rabbit-mq.enum';
+import { OrderWithDetailsEventPayload, RabbitMQConsumerMessage } from 'src/module/common/infrastruture/rabbit-mq/type-enum/rabbit-mq.type';
 import { InboxRepository } from '../../../repository/inbox.repository';
 import { OrderPaidDeductStockService } from 'src/module/cart-module/feature/order/order-paid-deduct-stock/order.paid.deduct.stock.service';
 
@@ -15,7 +16,7 @@ export class CartOrderPaidDeductStockConsumer implements OnModuleInit {
     ) { }
 
     async onModuleInit() {
-        await this.rabbitMQService.consumeMessages(
+        await this.rabbitMQService.consumeMessages<RabbitMQConsumerMessage<OrderWithDetailsEventPayload>>(
             QueueEnum.CART_ORDER_PAID_DEDUCT_STOCK_QUEUE,
             async (data) => {
                 const { outbox_uuid, payload } = data;

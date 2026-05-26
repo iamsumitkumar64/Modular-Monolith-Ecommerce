@@ -1,4 +1,5 @@
 import { BadRequestException, Injectable, } from "@nestjs/common";
+import { OrderEventPayload } from "src/module/common/infrastruture/rabbit-mq/type-enum/rabbit-mq.type";
 import { ProductRepository } from "src/module/cart-module/infrastructure/repository/product.repository";
 
 @Injectable()
@@ -7,7 +8,7 @@ export class OrderPaidDeductStockService {
         private readonly repository: ProductRepository,
     ) { }
 
-    async orderPaidDeductStock(order: any) {
+    async orderPaidDeductStock(order: OrderEventPayload) {
         // Deduct stock one by one
         const deductions = order.items.map(async (item) => {
             try {

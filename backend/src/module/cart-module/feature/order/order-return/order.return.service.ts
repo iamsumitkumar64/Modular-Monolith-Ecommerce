@@ -1,4 +1,5 @@
 import { BadRequestException, Injectable, } from "@nestjs/common";
+import { OrderEventPayload } from "src/module/common/infrastruture/rabbit-mq/type-enum/rabbit-mq.type";
 import { ProductRepository } from "src/module/cart-module/infrastructure/repository/product.repository";
 
 @Injectable()
@@ -7,7 +8,7 @@ export class OrderReturnService {
         private readonly repository: ProductRepository,
     ) { }
 
-    async orderReturn(order: any) {
+    async orderReturn(order: OrderEventPayload) {
         // increase stock one by one
         const increase = order.items.map(async (item) => {
             try {

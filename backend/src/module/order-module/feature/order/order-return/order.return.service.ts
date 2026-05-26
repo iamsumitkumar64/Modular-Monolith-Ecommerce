@@ -1,4 +1,5 @@
 import { BadRequestException, Injectable } from "@nestjs/common";
+import { OrderEventPayload } from "src/module/common/infrastruture/rabbit-mq/type-enum/rabbit-mq.type";
 import { OrderPaymentStatusEnum, OrderStatusEnum } from "src/module/order-module/domain/order/order.enum";
 import { OrderRepository } from "src/module/order-module/infrastructure/repository/order.repository";
 
@@ -8,7 +9,7 @@ export class OrderReturnService {
         private readonly repository: OrderRepository,
     ) { }
 
-    async orderReturn(order: any) {
+    async orderReturn(order: OrderEventPayload) {
         if (order.returned_from_status) {
             await this.repository.updateReturnedFromStatus(order.uuid, order.returned_from_status);
         }

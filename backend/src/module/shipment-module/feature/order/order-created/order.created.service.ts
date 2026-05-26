@@ -1,4 +1,5 @@
 import { BadRequestException, Injectable, } from "@nestjs/common";
+import { OrderCreatedEventPayload } from "src/module/common/infrastruture/rabbit-mq/type-enum/rabbit-mq.type";
 import { OrderItemRepository } from "src/module/shipment-module/infrastructure/repository/order.item.repository";
 import { OrderRepository } from "src/module/shipment-module/infrastructure/repository/order.repository";
 
@@ -9,7 +10,7 @@ export class OrderCreatedService {
         private readonly orderItemRepository: OrderItemRepository,
     ) { }
 
-    async orderCreated(payload: any) {
+    async orderCreated(payload: OrderCreatedEventPayload) {
         const {
             order_uuid,
             cart_uuid,
