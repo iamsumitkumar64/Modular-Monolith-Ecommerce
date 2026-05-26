@@ -13,7 +13,7 @@ export const getOrders = createAsyncThunk<
 >(
     "order/list",
     async (
-        { limit = Number(process.env.page_limit) || 10, offset = Number(process.env.page_offset) || 0 }: { limit?: number; offset?: number },
+        { limit = Number(process.env.NEXT_PUBLIC_PAGE_LIMIT) || 10, offset = Number(process.env.NEXT_PUBLIC_PAGE_OFFSET) || 0 }: { limit?: number; offset?: number },
         { getState, rejectWithValue }
     ) => {
         try {

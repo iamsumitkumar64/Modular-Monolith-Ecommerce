@@ -10,6 +10,10 @@ export enum XMatchHeaderEnum {
     ANY = 'any'
 }
 
+export enum RetryMechanismHeaderEnum {
+    XREQUEUETRY = 'x-requeue-try'
+}
+
 // which exchange belong to
 export enum ExchangeNameEnum {
     USER_EXCHANGE = 'user.exchange',
@@ -26,7 +30,7 @@ export enum RoutingKeyEnum {
     ORDER_RETURNED = 'order.returned',
 }
 
-// queue name (server name) + routing key + endfix(queue)
+// queue name (module name) + routing key + endfix(queue)
 export enum QueueEnum {
     PRODUCT_USER_REGISTERED_QUEUE = 'product.user.registered.queue',
     CART_USER_REGISTERED_QUEUE = 'cart.user.registered.queue',
@@ -43,10 +47,5 @@ export enum QueueEnum {
     ORDER_RETURNED_QUEUE = 'order.returned.queue',
     PRODUCT_ORDER_RETURNED_QUEUE = 'product.order.returned.queue',
     CART_ORDER_RETURNED_QUEUE = 'cart.order.returned.queue',
-    SHIPMENT_ORDER_RETURNED_QUEUE = 'shipment.order.returned.queue',
     FINANCE_ORDER_RETURNED_QUEUE = 'finance.order.returned.queue',
-}
-
-export enum RetryMechanismHeaderEnum {
-    XREQUEUETRY = 'x-requeue-try'
 }

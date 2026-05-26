@@ -5,7 +5,7 @@ import { enqueueSnackbar } from "notistack";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { addAmountSchema, AddAmountSchemaType } from "@/schemas/payment";
-import { addAmount, getAccount } from "@/redux/feature/payment/payment.action";
+import { addAmount, getAccount, getHistories } from "@/redux/feature/payment/payment.action";
 import { useAppDispatch } from "@/redux/hooks.ts";
 
 interface Props {
@@ -31,6 +31,7 @@ export default function AddAmountModal({ open, onClose }: Props) {
             reset();
             onClose();
             await dispatch(getAccount()).unwrap();
+            await dispatch(getHistories()).unwrap();
         } catch (error: any) {
             enqueueSnackbar(String(error), { variant: "error" });
         }

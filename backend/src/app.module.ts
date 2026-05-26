@@ -4,32 +4,46 @@ import { AppService } from './app.service';
 import { JwtModule } from '@nestjs/jwt';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { ConfigModule } from '@nestjs/config';
-import { userDataSource } from './module/user-server/infrastructure/database/data-source';
-import { BcryptService } from './module/common/services/bcrypt.service';
-import { UserRepository } from './module/user-server/infrastructure/repository/user.repo';
-import { JwtHelperService } from './module/user-server/infrastructure/services/jwt.service';
+import { ScheduleModule } from '@nestjs/schedule';
+
+// Common Module
+import { BcryptService } from './module/common/infrastruture/services/bcrypt.service';
+import { SocketModule } from './module/common/infrastruture/socket/socket.module';
 import { RabbitMQModule } from './module/common/infrastruture/rabbit-mq/rabbit-mq.module';
 import { AuthenticateMiddleware } from './module/common/infrastruture/middleware/authenticate.middleware';
-import * as AuthCronModule from './module/user-server/infrastructure/cron/cron.module';
-import * as AuthModule from './module/user-server/feature/user/user.module';
-import { ScheduleModule } from '@nestjs/schedule';
-import { productDataSource } from './module/product-server/infrastructure/database/data-source';
-import { ProductModule } from './module/product-server/feature/product/product.module';
-import { cartDataSource } from './module/cart-server/infrastructure/database/data-source';
-import { CartModule } from './module/cart-server/feature/cart/cart.module';
-import { orderDataSource } from './module/order-server/infrastructure/database/data-source';
-import { financeDataSource } from './module/finance-server/infrastructure/database/data-source';
-import { PaymentModule } from './module/finance-server/feature/payment/payment.module';
-import { PaymentCardModule } from './module/finance-server/feature/payment-card/payment-card.module';
-import { shipmentDataSource } from './module/shipment-server/infrastructure/database/data-source';
-import { UserAddressModule } from './module/shipment-server/feature/user-address/user-address.module';
-import { OrderModule } from './module/order-server/feature/order/order.module';
-import * as OrderCronModule from './module/order-server/infrastructure/cron/cron.module';
-import { PaymentOrderModule } from './module/finance-server/feature/order/order.module';
-import * as FinanceCronModule from './module/finance-server/infrastructure/cron/cron.module';
-import * as ShipmentCronModule from './module/shipment-server/infrastructure/cron/cron.module';
-import { SocketModule } from './module/common/socket/socket.module';
-import { ShipmentOrderModule } from './module/shipment-server/feature/order/order.module';
+
+// User Module
+import { userDataSource } from './module/user-module/infrastructure/database/data-source';
+import { UserRepository } from './module/user-module/infrastructure/repository/user.repository';
+import { JwtHelperService } from './module/user-module/infrastructure/services/jwt.service';
+import * as UserCronModule from './module/user-module/infrastructure/cron/cron.module';
+import { UserModule } from './module/user-module/feature/user/user.module';
+
+// Product Module
+import { productDataSource } from './module/product-module/infrastructure/database/data-source';
+import { ProductModule } from './module/product-module/feature/product/product.module';
+
+// Cart Module
+import { cartDataSource } from './module/cart-module/infrastructure/database/data-source';
+import { CartModule } from './module/cart-module/feature/cart/cart.module';
+
+// Order Module
+import { orderDataSource } from './module/order-module/infrastructure/database/data-source';
+import { OrderModule } from './module/order-module/feature/order/order.module';
+import * as OrderCronModule from './module/order-module/infrastructure/cron/cron.module';
+
+// Finance Module
+import { financeDataSource } from './module/finance-module/infrastructure/database/data-source';
+import { PaymentModule } from './module/finance-module/feature/payment/payment.module';
+import { PaymentCardModule } from './module/finance-module/feature/payment-card/payment-card.module';
+import { PaymentOrderModule } from './module/finance-module/feature/order/order.module';
+import * as FinanceCronModule from './module/finance-module/infrastructure/cron/cron.module';
+
+// Shipment Module
+import { shipmentDataSource } from './module/shipment-module/infrastructure/database/data-source';
+import { UserAddressModule } from './module/shipment-module/feature/user/user-address.module';
+import * as ShipmentCronModule from './module/shipment-module/infrastructure/cron/cron.module';
+import { ShipmentOrderModule } from './module/shipment-module/feature/order/order.module';
 
 @Module({
   imports: [
@@ -54,8 +68,8 @@ import { ShipmentOrderModule } from './module/shipment-server/feature/order/orde
       retryAttempts: 10,
       retryDelay: 5000
     }),
-    AuthModule.UserModule,
-    AuthCronModule.CronModule,
+    UserModule,
+    UserCronModule.CronModule,
 
     // Product Modules
     TypeOrmModule.forRoot({

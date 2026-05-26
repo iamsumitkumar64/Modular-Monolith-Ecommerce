@@ -139,7 +139,7 @@ export class RabbitMQService implements OnModuleInit, OnModuleDestroy {
             ExchangeTypeEnum.DIRECT,
         );
 
-        // order returned so change status in order server queue
+        // order returned so change status in order module queue
         await this.setupExchangeQueueAndBind(
             QueueEnum.ORDER_RETURNED_QUEUE,
             ExchangeNameEnum.ORDER_EXCHANGE,
@@ -147,7 +147,7 @@ export class RabbitMQService implements OnModuleInit, OnModuleDestroy {
             ExchangeTypeEnum.DIRECT,
         );
 
-        // order paid so deduct stock in product server queue
+        // order paid so deduct stock in product module queue
         await this.setupExchangeQueueAndBind(
             QueueEnum.PRODUCT_ORDER_PAID_DEDUCT_STOCK_QUEUE,
             ExchangeNameEnum.ORDER_EXCHANGE,
@@ -155,7 +155,7 @@ export class RabbitMQService implements OnModuleInit, OnModuleDestroy {
             ExchangeTypeEnum.DIRECT,
         );
 
-        // order paid so deduct stock in cart server queue
+        // order paid so deduct stock in cart module queue
         await this.setupExchangeQueueAndBind(
             QueueEnum.CART_ORDER_PAID_DEDUCT_STOCK_QUEUE,
             ExchangeNameEnum.ORDER_EXCHANGE,
@@ -163,7 +163,7 @@ export class RabbitMQService implements OnModuleInit, OnModuleDestroy {
             ExchangeTypeEnum.DIRECT,
         );
 
-        // order returned so increase stock in product server queue
+        // order returned so increase stock in product module queue
         await this.setupExchangeQueueAndBind(
             QueueEnum.PRODUCT_ORDER_RETURNED_QUEUE,
             ExchangeNameEnum.ORDER_EXCHANGE,
@@ -171,7 +171,7 @@ export class RabbitMQService implements OnModuleInit, OnModuleDestroy {
             ExchangeTypeEnum.DIRECT,
         );
 
-        // order returned so increase stock in cart server queue
+        // order returned so increase stock in cart module queue
         await this.setupExchangeQueueAndBind(
             QueueEnum.CART_ORDER_RETURNED_QUEUE,
             ExchangeNameEnum.ORDER_EXCHANGE,
@@ -179,15 +179,7 @@ export class RabbitMQService implements OnModuleInit, OnModuleDestroy {
             ExchangeTypeEnum.DIRECT,
         );
 
-        // order returned so change status in shipment server queue
-        await this.setupExchangeQueueAndBind(
-            QueueEnum.SHIPMENT_ORDER_RETURNED_QUEUE,
-            ExchangeNameEnum.ORDER_EXCHANGE,
-            RoutingKeyEnum.ORDER_RETURNED,
-            ExchangeTypeEnum.DIRECT,
-        );
-
-        // order returned so refund money in finance server queue
+        // order returned so refund money in finance module queue
         await this.setupExchangeQueueAndBind(
             QueueEnum.FINANCE_ORDER_RETURNED_QUEUE,
             ExchangeNameEnum.ORDER_EXCHANGE,
@@ -208,11 +200,10 @@ export class RabbitMQService implements OnModuleInit, OnModuleDestroy {
         await this.setupRetryQueue(QueueEnum.CART_ORDER_PAID_DEDUCT_STOCK_QUEUE);
         await this.setupRetryQueue(QueueEnum.PRODUCT_ORDER_RETURNED_QUEUE);
         await this.setupRetryQueue(QueueEnum.CART_ORDER_RETURNED_QUEUE);
-        await this.setupRetryQueue(QueueEnum.SHIPMENT_ORDER_RETURNED_QUEUE);
         await this.setupRetryQueue(QueueEnum.FINANCE_ORDER_RETURNED_QUEUE);
     }
 
-    private async setupRetryQueue(originalQueue: string, retryDelay = 15000) {
+    private async setupRetryQueue(originalQueue: string, retryDelay = Number(process.env.RETRYDELAY) || 15000) {
         const channel = this.channel;
         if (!channel) return;
 

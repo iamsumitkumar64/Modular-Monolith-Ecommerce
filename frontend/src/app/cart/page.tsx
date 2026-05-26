@@ -198,8 +198,8 @@ export default function CartPage() {
                 </Box>
             )}
 
-            {cart && cart?.items?.length > 0 && (
-                <Box className={styles.paybox}>
+            <Box className={styles.paybox}>
+                {cart && cart?.items?.length > 0 && (
                     <Button
                         color="primary"
                         onClick={() => setOpenPlaceOrderDialog(true)}
@@ -207,12 +207,12 @@ export default function CartPage() {
                     >
                         Place Order
                     </Button>
+                )}
 
-                    <Button onClick={() => setOpenUserAddressModal(true)}>
-                        Add address
-                    </Button>
-                </Box>
-            )}
+                <Button onClick={() => setOpenUserAddressModal(true)}>
+                    Add address
+                </Button>
+            </Box>
             <UserAddressModal isOpen={openUserAddressModal} onClose={handleAddAddressClose} />
 
             <PlaceOrderDialog

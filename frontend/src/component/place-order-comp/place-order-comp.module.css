@@ -8,6 +8,10 @@
 
 .noAddressText {
     margin-bottom: 2%;
+    text-align: center;
+    font-weight: 500;
+    color: black;
+    text-shadow: 5 5 5 #777777;
 }
 
 .selectAddressText {
@@ -86,9 +90,17 @@
 }
 
 .dialogActions {
+    width: 100%;
     display: flex;
+    justify-content: space-around;
     align-items: stretch;
     gap: 10px;
+}
+
+.addButton,
+.deleteAddress,
+.cancelBtn {
+    width: fit-content;
 }
 
 .deleteAddress,

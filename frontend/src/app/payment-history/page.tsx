@@ -79,30 +79,34 @@ export default function PaymentHistoryPage() {
                 </Typography>
             </Box>
             <Box className={styles.historyList}>
-                {histories.map((item, idx) => (
-                    <Card key={item.uuid} className={styles.historyCard}>
-                        <Box
-                            className={`${styles.historyLabel} ${item.type === PaymentHistoryTypeEnum.TOPUP
+                {histories.map((item, idx) => {
+                    const descendingIndex = histories.length - 1 - idx;
+
+                    return (
+                        <Card key={item.uuid} className={styles.historyCard}>
+                            <Box
+                                className={`${styles.historyLabel} ${item.type === PaymentHistoryTypeEnum.TOPUP
                                     ? styles.topup
                                     : item.type === PaymentHistoryTypeEnum.REFUND
                                         ? styles.refund
                                         : styles.payment
-                                }`}
-                        >
-                            {item.type?.toUpperCase()}
-                        </Box>
+                                    }`}
+                            >
+                                {item.type?.toUpperCase()}
+                            </Box>
 
-                        <CardContent>
-                            <Typography variant="subtitle1" className={styles.HistoryIndex}>#{idx + 1}</Typography>
-                            {/* <Typography variant="subtitle2">Type: {item.type?.toUpperCase()}</Typography> */}
-                            <Typography>Amount: ₹ {Number(item.amount).toFixed(2)}</Typography>
-                            <Typography>{item.description || "No description"}</Typography>
-                            <Typography color="textSecondary">
-                                {new Date(item.created_at).toLocaleString()}
-                            </Typography>
-                        </CardContent>
-                    </Card>
-                ))}
+                            <CardContent>
+                                <Typography variant="subtitle1" className={styles.HistoryIndex}>#{descendingIndex + 1}</Typography>
+                                {/* <Typography variant="subtitle2">Type: {item.type?.toUpperCase()}</Typography> */}
+                                <Typography>Amount: ₹ {Number(item.amount).toFixed(2)}</Typography>
+                                <Typography>{item.description || "No description"}</Typography>
+                                <Typography color="textSecondary">
+                                    {new Date(item.created_at).toLocaleString()}
+                                </Typography>
+                            </CardContent>
+                        </Card>
+                    );
+                })}
             </Box>
 
             <AddCardModal open={openCardModal} onClose={() => setOpenCardModal(false)} />

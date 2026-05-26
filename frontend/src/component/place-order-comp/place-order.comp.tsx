@@ -107,17 +107,6 @@ export default function PlaceOrderDialog({
                             <Typography color="textSecondary" className={styles.noAddressText}>
                                 No addresses found. Create one to place an order.
                             </Typography>
-                            <Button
-                                fullWidth
-                                variant="outlined"
-                                startIcon={<AddIcon />}
-                                onClick={() => {
-                                    handleClose();
-                                    onAddAddressClick();
-                                }}
-                            >
-                                Add New Address
-                            </Button>
                         </Box>
                     ) : (
                         <Box>
@@ -172,6 +161,7 @@ export default function PlaceOrderDialog({
                     )}
                 </Box>
             </DialogContent>
+
             <DialogActions className={styles.dialogActions}>
                 <Button
                     fullWidth

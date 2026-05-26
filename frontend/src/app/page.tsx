@@ -15,9 +15,10 @@ import { Product } from "@/redux/feature/product/product-type";
 export default function Home() {
   const dispatch = useAppDispatch();
   const { products, totalDocuments, loading, } = useAppSelector((state: RootState) => state.productReducer);
+  const { user } = useAppSelector((state: RootState) => state.authReducer);
   const { cart } = useAppSelector((state: RootState) => state.cartReducer);
-  const [offset, setOffset] = useState(Number(process.env.page_offset) || 0);
-  const limit = Number(process.env.page_limit) || 10;
+  const [offset, setOffset] = useState(Number(process.env.NEXT_PUBLIC_PAGE_OFFSET) || 0);
+  const limit = Number(process.env.NEXT_PUBLIC_PAGE_LIMIT) || 10;
   const [hasMore, setHasMore] = useState(true);
 
   useEffect(() => {
@@ -63,6 +64,11 @@ export default function Home() {
 
   const handleAddToCart = async (product_uuid: string) => {
     try {
+      if (!user) {
+        enqueueSnackbar("Login Needed", { variant: "error" });
+        return;
+      }
+
       await dispatch(addItemToCart({ product_uuid, quantity: 1, })).unwrap();
       enqueueSnackbar("Item added to cart", { variant: "success", });
     } catch (err: any) {

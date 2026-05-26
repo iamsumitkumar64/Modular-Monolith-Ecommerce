@@ -4,6 +4,7 @@ import { createSlice } from "@reduxjs/toolkit";
 import { OrderState } from "./order-type";
 import { getOrders, createOrder, returnOrder } from "./order-action";
 import { OrderPaymentStatusEnum, OrderStatusEnum } from "@/enum/order.enum";
+import { clearCartState } from "../cart/cart-slice";
 
 const initialState: OrderState = {
     orders: null,
@@ -83,6 +84,9 @@ const orderSlice = createSlice({
                 if (state.orders) state.orders.unshift(action.payload.data as any);
                 else state.orders = [action.payload.data as any];
                 state.error = null;
+
+                // remove all carted cart items in redux memory
+                clearCartState();
             })
             .addCase(createOrder.rejected, (state, action) => {
                 state.loading = false;

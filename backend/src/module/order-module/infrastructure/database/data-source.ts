@@ -1,0 +1,30 @@
+//Data-Source imports
+import { DataSource, DataSourceOptions } from "typeorm";
+import 'dotenv/config';
+
+//Entities
+import { InboxEntity } from "../../domain/inbox/inbox.entity";
+import { UserEntity } from "../../domain/user/user.entity";
+import { OrderEntity } from "../../domain/order/order.entity";
+import { OrderItemEntity } from "../../domain/order-item/order-item.entity";
+import { OutboxEntity } from "src/module/order-module/domain/outbox/outbox.entity";
+
+const options: DataSourceOptions = {
+    type: process.env.DB_POSTGRES_TYPE as any,
+    host: process.env.DB_POSTGRES_HOST,
+    port: process.env.DB_POSTGRES_PORT as any,
+    username: process.env.DB_POSTGRES_USERNAME,
+    password: process.env.DB_POSTGRES_PASSWORD,
+    database: process.env.DB_POSTGRES_DATABASE,
+    entities: [
+        UserEntity, InboxEntity, OutboxEntity,
+        OrderEntity, OrderItemEntity,
+    ],
+    schema: process.env.DB_POSTGRES_ORDER_SCHEMA || 'order_schema',
+    synchronize: false,
+    migrations: ['dist/module/order-module/infrastructure/database/migrations/*{.ts,.js}'],
+};
+
+const orderDataSource = new DataSource(options);
+
+export { orderDataSource, options };
