@@ -1,11 +1,27 @@
-import { OrderPaymentStatusEnum, OrderStatusEnum } from "src/module/order-module/domain/order/order.enum";
-
 export interface PublishHeadersInterface {
     'x-match'?: 'all' | 'any';
-    [key: string]: unknown;
+    [key: string]: any;
 }
 
 export type ExchangeType = | 'direct' | 'fanout' | 'topic' | 'headers';
+
+
+// RabbitMQ Payloads down here
+
+enum OrderPaymentStatusEnum {
+    PENDING = 'pending',
+    PAID = 'paid',
+    CANCELLED = 'cancelled',
+    REFUND = 'refund'
+}
+
+enum OrderStatusEnum {
+    PENDING = 'pending',
+    PROCESSING = 'processing',
+    PACKED = 'packed',
+    DELIVERED = 'delivered',
+    RETURNED = 'returned'
+}
 
 export interface RabbitMQConsumerMessage<TPayload = unknown> {
     outbox_uuid: string;
